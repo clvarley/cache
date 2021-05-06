@@ -1,25 +1,25 @@
 <?php
 
-namespace Cache\Hashing;
+namespace Cache\Key;
 
-use Cache\HashInterface;
+use Cache\KeyGeneratorInterface;
 
 use function md5;
 
 /**
- * Hash adapter for the MD5 algorithm
+ * MD5 based key generator
  *
  * @package Cache
  * @author clvarley
  */
-Class Md5Adapter Implements HashInterface
+Class Md5Generator Implements KeyGeneratorInterface
 {
 
     /**
-     * Hash the string using the MD5 algorithm
+     * Creates a key using the MD5 algorithm
      *
      * @param string $subject Subject string
-     * @return string         MD5 hash
+     * @return string         MD5 key
      */
     public function hash( string $subject ) : string
     {

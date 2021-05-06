@@ -3,19 +3,19 @@
 namespace Cache;
 
 /**
- * Adapters used to provide string hashing
+ * Adapters used to generate cache keys
  *
  * @package Cache
  * @author clvarley
  */
-Interface HashInterface
+Interface KeyGeneratorInterface
 {
 
     /**
-     * Hash the subject using the appropriate algorithm
+     * Generate a key from the provided string
      *
      * @param string $subject Subject string
-     * @return string         Hash
+     * @return string         Key
      */
     public function hash( string $subject ) : string;
 

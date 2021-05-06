@@ -1,25 +1,25 @@
 <?php
 
-namespace Cache\Hashing;
+namespace Cache\Key;
 
-use Cache\HashInterface;
+use Cache\KeyGeneratorInterface;
 
 use function sha1;
 
 /**
- * Hash adapter for the SHA1 algorithm
+ * SHA1 based key generator
  *
  * @package Cache
  * @author clvarley
  */
-Class Sha1Adapter Implements HashInterface
+Class Sha1Generator Implements KeyGeneratorInterface
 {
 
     /**
-     * Hash the string using the SHA1 algorithm
+     * Creates a key using the MD5 algorithm
      *
      * @param string $subject Subject string
-     * @return string         SHA1 hash
+     * @return string         SHA1 key
      */
     public function hash( string $subject ) : string
     {

@@ -4,9 +4,9 @@ namespace Cache;
 
 use Cache\CacheInterface;
 use Cache\SerializerInterface;
-use Cache\HashInterface;
-use Cache\Hashing\Md5Adapter;
 use Cache\Serialization\PhpSerializer;
+use Cache\KeyGeneratorInterface;
+use Cache\Key\Md5Generator;
 use Cache\Exception\DeserializationException;
 
 /**
@@ -33,24 +33,27 @@ Class FileCache Implements CacheInterface
     protected $serializer;
 
     /**
-     * Adapter responsible for generating key hashes
+     * Adapter responsible for generating cache keys
      *
-     * @var HashInterface $hasher Hash adapter
+     * @var KeyGeneratorInterface $generator Key generator
      */
-    protected $hasher;
+    protected $generator;
 
     /**
-     * Create a file cache using the serialization and hashing method provided
+     * Create a file cache using the serialization and hashing methods provided
      *
-     * @param string $directory               Root directory
-     * @param SerializerInterface $serializer Serialization method
-     * @param HashInterface $hasher           Hashing method
+     * @param string $directory                Root directory
+     * @param SerializerInterface $serializer  Serialization method
+     * @param KeyGeneratorInterface $generator Key generator
      */
-    public function __construct( string $directory, SerializerInterface $serializer, HashInterface $hasher )
-    {
-        $this->directory = $directory;
+    public function __construct(
+        string $directory,
+        SerializerInterface $serializer,
+        KeyGeneratorInterface $generator
+    ) {
+        $this->directory  = $directory;
         $this->serializer = $serializer;
-        $this->hasher = $hasher;
+        $this->generator  = $generator;
     }
 
     /**
@@ -64,7 +67,7 @@ Class FileCache Implements CacheInterface
     {
         return new static(
             $directory,
-            new Md5Adapter,
+            new Md5Generator,
             new PhpSerializer
         );
     }
@@ -74,7 +77,7 @@ Class FileCache Implements CacheInterface
      */
     public function get( string $key ) /* : ?mixed */
     {
-        $key = $this->hasher->hash( $key );
+        $key = $this->generator->hash( $key );
 
         // TODO: Read from FS
 
@@ -104,7 +107,7 @@ Class FileCache Implements CacheInterface
 
         $content = $this->serializer->serialize( $item );
 
-        $key = $this->hasher->hash( $key );
+        $key = $this->generator->hash( $key );
 
         // TODO: Write to FS
 
