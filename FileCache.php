@@ -55,6 +55,7 @@ Class FileCache Implements CacheInterface
     /**
      * Creates a FileCache with sensible defaults
      *
+     * @static
      * @param string $directory Root directory
      * @return static           FileCache adapter
      */
@@ -65,5 +66,33 @@ Class FileCache Implements CacheInterface
             new Md5Adapter,
             new PhpSerializer
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function get( string $key ) /* : mixed */
+    {
+        $key = $this->hasher->hash( $key );
+
+        // TODO: Read from FS
+
+        $item = $this->serializer->deserialize( $content );
+
+        // TODO: Check lifetime
+
+        return;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function set( string $key, /* mixed */ $value, int $lifetime = 60 ) : void
+    {
+        $key = $this->hasher->hash( $key );
+
+        // TODO: Write to FS
+
+        return;
     }
 }
