@@ -16,7 +16,7 @@ Class PosixGenerator Implements KeyGeneratorInterface
 {
 
     /**
-     * Strips out non-POSIX portable filename characters
+     * Strips out non-POSIX portable characters
      *
      * @param string $subject Subject string
      * @return string         Key
