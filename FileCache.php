@@ -71,7 +71,7 @@ Class FileCache Implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function get( string $key ) /* : mixed */
+    public function get( string $key ) /* : ?mixed */
     {
         $key = $this->hasher->hash( $key );
 
@@ -79,9 +79,14 @@ Class FileCache Implements CacheInterface
 
         $item = $this->serializer->deserialize( $content );
 
-        // TODO: Check lifetime
+        // Has the item expired?
+        if ( $item->isValid() ) {
+            $value = $item->value;
+        } else {
+            $value = null;
+        }
 
-        return;
+        return $value;
     }
 
     /**
