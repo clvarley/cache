@@ -4,6 +4,7 @@ namespace Cache\Serialization;
 
 use Cache\SerializerInterface;
 use Cache\CacheItem;
+use Cache\Exception\DeserializationException;
 
 use function serialize;
 use function unserialize;
@@ -31,15 +32,17 @@ Class PhpSerializer Implements SerializerInterface
     /**
      * Deserialize into a cache item
      *
+     * @throws DeserializationException
      * @param string $serialized Serialized item
      * @return CacheItem         Cache item
      */
     public function deserialize( string $serialized ) : CacheItem
     {
+        // Can't use "allowed-classes" option
         $item = unserialize( $serialized );
 
         if ( !$item instanceof CacheItem ) {
-            // TODO: Define custom exceptions
+            throw new DeserializationException;
         }
 
         return $item;

@@ -7,6 +7,7 @@ use Cache\SerializerInterface;
 use Cache\HashInterface;
 use Cache\Hashing\Md5Adapter;
 use Cache\Serialization\PhpSerializer;
+use Cache\Exception\DeserializationException;
 
 /**
  * File backed caching system
@@ -77,9 +78,14 @@ Class FileCache Implements CacheInterface
 
         // TODO: Read from FS
 
-        $item = $this->serializer->deserialize( $content );
+        // Failed to deserialize - quit out
+        try {
+            $item = $this->serializer->deserialize( $content );
+        } catch ( DeserializationException $e ) {
+            return null;
+        }
 
-        // Has the item expired?
+        // Item expired?
         if ( $item->isValid() ) {
             $value = $item->value;
         } else {
@@ -94,6 +100,10 @@ Class FileCache Implements CacheInterface
      */
     public function set( string $key, /* mixed */ $value, int $lifetime = 60 ) : void
     {
+        $item = new CacheItem( $value, $lifetime );
+
+        $content = $this->serializer->serialize( $item );
+
         $key = $this->hasher->hash( $key );
 
         // TODO: Write to FS
