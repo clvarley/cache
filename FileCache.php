@@ -89,13 +89,11 @@ Class FileCache Implements CacheInterface
         }
 
         // Item expired?
-        if ( $item->isValid() ) {
-            $value = $item->value;
-        } else {
-            $value = null;
+        if ( !$item->isValid() ) {
+            return null;
         }
 
-        return $value;
+        return $item->value;
     }
 
     /**
