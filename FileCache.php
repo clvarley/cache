@@ -18,21 +18,21 @@ Class FileCache Implements CacheInterface
 {
 
     /**
-    *
-    *
-    * @var string $directory Root directory
-    */
+     * Root directory for this cache system
+     *
+     * @var string $directory Root directory
+     */
     protected $directory;
 
     /**
-     *
+     * Adapter responsible for serializing values
      *
      * @var SerializerInterface $serializer Value serializer
      */
     protected $serializer;
 
     /**
-     *
+     * Adapter responsible for generating key hashes
      *
      * @var HashInterface $hasher Hash adapter
      */
