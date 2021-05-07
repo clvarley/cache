@@ -21,7 +21,7 @@ Class Sha1Generator Implements KeyGeneratorInterface
      * @param string $subject Subject string
      * @return string         SHA1 key
      */
-    public function hash( string $subject ) : string
+    public function generate( string $subject ) : string
     {
         return sha1( $subject );
     }

@@ -158,7 +158,7 @@ Class FileCache Implements CacheInterface
         $parts = [];
 
         foreach ( explode( '.', $key ) as $sub_key ) {
-            $parts[] = $this->generator->hash( $sub_key );
+            $parts[] = $this->generator->generate( $sub_key );
         }
 
         return $parts;

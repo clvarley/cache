@@ -22,7 +22,7 @@ Class RawGenerator Implements KeyGeneratorInterface
      * @param string $subject Subject string
      * @return string         Subject string
      */
-    public function hash( string $subject ) : string
+    public function generate( string $subject ) : string
     {
         return $subject;
     }

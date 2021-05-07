@@ -21,7 +21,7 @@ Class Md5Generator Implements KeyGeneratorInterface
      * @param string $subject Subject string
      * @return string         MD5 key
      */
-    public function hash( string $subject ) : string
+    public function generate( string $subject ) : string
     {
         return md5( $subject );
     }
