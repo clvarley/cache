@@ -86,10 +86,12 @@ Class FileCache Implements CacheInterface
      */
     public function get( string $key ) /* : ?mixed */
     {
+        $root = $this->directory->getPath();
+
         $parts = $this->splitKey( $key );
 
         $filepath = implode( '/', $parts );
-        $filepath = "$filepath.bin";
+        $filepath = "$root/$filepath.bin";
 
         // Cache file not found
         if ( !is_file( $filepath ) ) {
@@ -98,7 +100,9 @@ Class FileCache Implements CacheInterface
 
         $content = (string)file_get_contents( $filepath );
 
+
         // TODO: Checking $content is valid
+
 
         // Failed to deserialize - quit out
         try {
