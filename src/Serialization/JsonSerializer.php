@@ -1,6 +1,6 @@
 <?php
 
-namespace Clvarley\Cache;
+namespace Clvarley\Cache\Serialization;
 
 use Clvarley\Cache\SerializerInterface;
 use Clvarley\Cache\CacheItem;
