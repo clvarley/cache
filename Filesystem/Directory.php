@@ -49,21 +49,21 @@ Class Directory
      * @param string $directory Directory path
      * @param int $mode         (Optional) Directory permissions
      * @param bool $recursive   (Optional) Create nested directories?
-     * @return bool             Directory created?
+     * @return Directory|null   Directory
      */
     public function create(
         string $directory = '',
         int $mode = 0664,
         bool $recursive = false
-    ) : bool {
+    ) : ?Directory {
         $path = "$this->path/$directory";
 
-        // Already exists!
-        if ( is_dir( $path ) ) {
-            return true;
+        // Already exists or we've created it!
+        if ( is_dir( $path ) || mkdir( $path, $mode, $recursive ) ) {
+            return new static( $path );
         }
 
-        return mkdir( $path, $mode, $recursive );
+        return null;
     }
 
     /**
