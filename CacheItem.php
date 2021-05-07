@@ -4,6 +4,8 @@ namespace Cache;
 
 use function time;
 
+use const PHP_INT_MAX;
+
 /**
  * Represents a single item in the cache
  *
@@ -23,6 +25,8 @@ Final Class CacheItem
     /**
      * Timestamp of when this item expires
      *
+     * If the timestamp is 0, this item should never expire.
+     *
      * @var int $expires Expiry time
      */
     public $expires;
@@ -36,7 +40,7 @@ Final Class CacheItem
     public function __construct( /* mixed */ $value, int $lifetime )
     {
         $this->value   = $value;
-        $this->expires = time() + $lifetime;
+        $this->expires = ( $lifetime !== 0 ? time() + $lifetime : 0 );
     }
 
     /**
@@ -46,6 +50,6 @@ Final Class CacheItem
      */
     public function isValid() : bool
     {
-        return ( $this->expires > time() );
+        return ( $this->expires === 0 || $this->expires > time() );
     }
 }
