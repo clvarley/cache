@@ -1,8 +1,8 @@
 <?php
 
-namespace Cache\Key;
+namespace Clvarley\Cache\Key;
 
-use Cache\KeyGeneratorInterface;
+use Clvarley\Cache\KeyGeneratorInterface;
 
 /**
  * Just returns the raw text for use as the key

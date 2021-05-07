@@ -1,10 +1,10 @@
 <?php
 
-namespace Cache;
+namespace Clvarley\Cache;
 
-use Cache\CacheItem;
-use Cache\Exception\SerializationException;
-use Cache\Exception\DeserializationException;
+use Clvarley\Cache\CacheItem;
+use Clvarley\Cache\Exception\SerializationException;
+use Clvarley\Cache\Exception\DeserializationException;
 
 /**
  * Interface for all classes capable of serializing values

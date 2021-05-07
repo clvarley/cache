@@ -1,10 +1,10 @@
 <?php
 
-namespace Cache\Serialization;
+namespace Clvarley\Cache\Serialization;
 
-use Cache\SerializerInterface;
-use Cache\CacheItem;
-use Cache\Exception\DeserializationException;
+use Clvarley\Cache\SerializerInterface;
+use Clvarley\Cache\CacheItem;
+use Clvarley\Cache\Exception\DeserializationException;
 
 use function serialize;
 use function unserialize;

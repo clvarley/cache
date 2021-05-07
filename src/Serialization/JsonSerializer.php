@@ -1,10 +1,10 @@
 <?php
 
-namespace Cache;
+namespace Clvarley\Cache;
 
-use Cache\SerializerInterface;
-use Cache\CacheItem;
-use Cache\Exception\DeserializationException;
+use Clvarley\Cache\SerializerInterface;
+use Clvarley\Cache\CacheItem;
+use Clvarley\Cache\Exception\DeserializationException;
 
 use function json_encode;
 use function json_decode;

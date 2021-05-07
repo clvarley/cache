@@ -1,9 +1,9 @@
 <?php
 
-namespace Cache;
+namespace Clvarley\Cache;
 
-use Cache\CacheInterface;
-use Cache\CacheItem;
+use Clvarley\Cache\CacheInterface;
+use Clvarley\Cache\CacheItem;
 
 use const PHP_INT_MAX;
 

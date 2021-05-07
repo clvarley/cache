@@ -1,6 +1,6 @@
 <?php
 
-namespace Cache;
+namespace Clvarley\Cache;
 
 use Cache\CacheInterface;
 use Cache\Filesystem\Directory;

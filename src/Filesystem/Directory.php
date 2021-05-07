@@ -1,6 +1,6 @@
 <?php
 
-namespace Cache\Filesystem;
+namespace Clvarley\Cache\Filesystem;
 
 use function rtrim;
 use function is_dir;

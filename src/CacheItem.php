@@ -1,6 +1,6 @@
 <?php
 
-namespace Cache;
+namespace Clvarley\Cache;
 
 use function time;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Cache;
+namespace Clvarley\Cache;
 
 /**
  * Interface for all common cache functionality
