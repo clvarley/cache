@@ -4,9 +4,14 @@ namespace Cache;
 
 use Cache\SerializerInterface;
 use Cache\CacheItem;
+use Cache\Exception\DeserializationException;
 
 use function json_encode;
 use function json_decode;
+use function is_int;
+
+use const JSON_FORCE_OBJECT;
+use const JSON_PRESERVE_ZERO_FRACTION;
 
 /**
  * Serializes cache items into JSON
@@ -18,6 +23,13 @@ Class JsonSerializer Implements SerializerInterface
 {
 
     /**
+     * Flags to use when calling json_encode
+     *
+     * @var int $encoding Encoding options
+     */
+    static $encoding = JSON_FORCE_OBJECT | JSON_PRESERVE_ZERO_FRACTION;
+
+    /**
      * Serialize the cache item into JSON
      *
      * @param CacheItem $item Cache item
@@ -25,21 +37,35 @@ Class JsonSerializer Implements SerializerInterface
      */
     public function serialize( CacheItem $item ) : string
     {
-        // TODO:
+        // TODO: Object serialization
 
-        return '';
+        $serialized = json_encode( $item, self::$encoding );
+
+        return $serialized;
     }
 
     /**
      * Deserialize JSON into a cache item
      *
+     * @throws DeserializationException
      * @param string $serialized Serialized item
      * @return CacheItem         Cache item
      */
     public function deserialize( string $serialized ) : CacheItem
     {
-        // TODO:
+        $deserialized = json_decode( $serialized );
 
-        return new CacheItem;
+        // Missing required data
+        if (
+            !isset( $deserialized->value )
+            || !isset( $deserialized->lifetime )
+            || !is_int( $deserialized->lifetime )
+        ) {
+            throw new DeserializationException;
+        }
+
+        // TODO: Object deserialization
+
+        return new CacheItem( $deserialized->value, $deserialized->lifetime );
     }
 }
