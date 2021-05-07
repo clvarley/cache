@@ -2,13 +2,13 @@
 
 namespace Clvarley\Cache;
 
-use Cache\CacheInterface;
-use Cache\Filesystem\Directory;
-use Cache\SerializerInterface;
-use Cache\Serialization\PhpSerializer;
-use Cache\KeyGeneratorInterface;
-use Cache\Key\Md5Generator;
-use Cache\Exception\DeserializationException;
+use Clvarley\Cache\CacheInterface;
+use Clvarley\Cache\Filesystem\Directory;
+use Clvarley\Cache\SerializerInterface;
+use Clvarley\Cache\Serialization\PhpSerializer;
+use Clvarley\Cache\KeyGeneratorInterface;
+use Clvarley\Cache\Key\Md5Generator;
+use Clvarley\Cache\Exception\DeserializationException;
 
 use function array_pop;
 use function file_get_contents;
@@ -74,7 +74,7 @@ Class FileCache Implements CacheInterface
      */
     public static function create( string $directory ) : FileCache
     {
-        return new static(
+        return new self(
             $directory,
             new PhpSerializer,
             new Md5Generator

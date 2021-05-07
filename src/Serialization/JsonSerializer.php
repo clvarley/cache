@@ -53,7 +53,7 @@ Class JsonSerializer Implements SerializerInterface
      */
     public function deserialize( string $serialized ) : CacheItem
     {
-        $deserialized = json_decode( $serialized );
+        $deserialized = (object)json_decode( $serialized );
 
         // Missing required data
         if (

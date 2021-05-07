@@ -60,7 +60,7 @@ Class Directory
 
         // Already exists or we've created it!
         if ( is_dir( $path ) || mkdir( $path, $mode, $recursive ) ) {
-            return new static( $path );
+            return new self( $path );
         }
 
         return null;
