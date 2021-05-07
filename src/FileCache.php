@@ -70,7 +70,7 @@ Class FileCache Implements CacheInterface
      *
      * @static
      * @param string $directory Root directory
-     * @return static           FileCache adapter
+     * @return FileCache        FileCache adapter
      */
     public static function create( string $directory ) : FileCache
     {
