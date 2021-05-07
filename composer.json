@@ -1,0 +1,18 @@
+{
+    "name": "clvarley/cache",
+    "description": "Very simple OOP caching abstraction",
+    "type": "library",
+    "license": "MIT",
+    "readme": "README.md",
+    "require": {
+        "php": ">=7.1"
+    },
+    "require-dev": {
+        "vimeo/psalm": "^4.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Clvarley\\Cache": "src/"
+        }
+    }
+}
