@@ -76,8 +76,8 @@ Class FileCache Implements CacheInterface
     {
         return new static(
             $directory,
-            new Md5Generator,
-            new PhpSerializer
+            new PhpSerializer,
+            new Md5Generator
         );
     }
 
