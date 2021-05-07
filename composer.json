@@ -1,7 +1,8 @@
 {
     "name": "clvarley/cache",
-    "description": "Very simple OOP caching abstraction",
     "type": "library",
+    "description": "Very simple OOP cache abstraction layer",
+    "homepage": "https://github.com/clvarley/cache",
     "license": "MIT",
     "readme": "README.md",
     "require": {
