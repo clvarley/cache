@@ -21,7 +21,7 @@ Class Directory
      *
      * @var string $path Directory path
      */
-    protected $path;
+    private $path;
 
     /**
      * Creates a new wrapper around the given directorys
@@ -31,6 +31,16 @@ Class Directory
     public function __construct( string $path )
     {
         $this->path = trim( $path, '\\/' );
+    }
+
+    /**
+     * Return the absolute path to this directory
+     *
+     * @return string Directory path
+     */
+    public function getPath() : string
+    {
+        return $this->path;
     }
 
     /**
