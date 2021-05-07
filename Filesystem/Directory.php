@@ -30,7 +30,7 @@ Class Directory
      */
     public function __construct( string $path )
     {
-        $this->path = trim( $path, '\\/' );
+        $this->path = rtrim( $path, '\\/' );
     }
 
     /**
@@ -53,7 +53,7 @@ Class Directory
      */
     public function create(
         string $directory = '',
-        int $mode = 0664,
+        int $mode = 0751,
         bool $recursive = false
     ) : ?Directory {
         $path = "$this->path/$directory";
