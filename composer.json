@@ -6,7 +6,8 @@
     "license": "MIT",
     "readme": "README.md",
     "require": {
-        "php": ">=7.1"
+        "php": ">=7.1",
+        "ext-json": "*"
     },
     "require-dev": {
         "vimeo/psalm": "^4.7"
