@@ -29,7 +29,7 @@ Class MemoryCache Implements CacheInterface
     public function get( string $key ) /* : ?mixed */
     {
         if ( isset( $this->items[$key] ) && $this->items[$key]->isValid() ) {
-            return $this->items[$key];
+            return $this->items[$key]->value;
         }
 
         return null;
