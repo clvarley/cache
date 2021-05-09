@@ -5,6 +5,9 @@
     "homepage": "https://github.com/clvarley/cache",
     "license": "MIT",
     "readme": "README.md",
+    "suggest": {
+        "ext-igbinary": "More efficient value serialization"
+    },
     "require": {
         "php": ">=7.1",
         "ext-json": "*"
