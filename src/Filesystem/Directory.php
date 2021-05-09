@@ -53,7 +53,7 @@ Class Directory
      */
     public function create(
         string $directory = '',
-        int $mode = 0751,
+        int $mode = 0755,
         bool $recursive = false
     ) : ?Directory {
         $path = "$this->path/$directory";
