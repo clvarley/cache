@@ -9,6 +9,7 @@ use Clvarley\Cache\Serialization\PhpSerializer;
 use Clvarley\Cache\KeyGeneratorInterface;
 use Clvarley\Cache\Key\Md5Generator;
 use Clvarley\Cache\Exception\DeserializationException;
+use Clvarley\Cache\Exception\CacheWriteException;
 
 use function array_pop;
 use function file_get_contents;
@@ -137,7 +138,10 @@ Class FileCache Implements CacheInterface
             $directory = $this->directory;
         }
 
-        // TODO: Catch cases where `createDirectories` returns null
+        // Failed to create directory
+        if ( $directory === null ) {
+            throw new CacheWriteException;
+        }
 
         $root = $directory->getPath();
 
