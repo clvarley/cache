@@ -4,6 +4,7 @@ namespace Clvarley\Cache;
 
 use Clvarley\Cache\CacheInterface;
 use Clvarley\Cache\Filesystem\Directory;
+use Clvarley\Cache\Filesystem\File;
 use Clvarley\Cache\SerializerInterface;
 use Clvarley\Cache\Serialization\PhpSerializer;
 use Clvarley\Cache\KeyGeneratorInterface;
@@ -12,12 +13,8 @@ use Clvarley\Cache\Exception\DeserializationException;
 use Clvarley\Cache\Exception\CacheWriteException;
 
 use function array_pop;
-use function file_get_contents;
-use function file_put_contents;
 use function implode;
 use function explode;
-
-use const LOCK_EX;
 
 /**
  * File backed caching system
@@ -94,16 +91,14 @@ Class FileCache Implements CacheInterface
         $filepath = implode( '/', $parts );
         $filepath = "$root/$filepath.bin";
 
+        $cache_file = new File( $filepath );
+
         // Cache file not found
-        if ( !is_file( $filepath ) ) {
+        if ( !$cache_file->exists() ) {
             return null;
         }
 
-        $content = (string)file_get_contents( $filepath );
-
-
-        // TODO: Checking $content is valid
-
+        $content = $cache_file->read();
 
         // Failed to deserialize - quit out
         try {
@@ -145,8 +140,8 @@ Class FileCache Implements CacheInterface
 
         $root = $directory->getPath();
 
-        // Try and write the file
-        file_put_contents( "$root/$filename.bin", $content, LOCK_EX );
+        $cache_file = new File( "$root/$filename.bin" );
+        $cache_file->write( $content );
 
         return;
     }
