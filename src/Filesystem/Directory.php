@@ -56,7 +56,7 @@ Class Directory
         int $mode = 0755,
         bool $recursive = false
     ) : ?Directory {
-        $path = "$this->path/$directory";
+        $path = rtrim( "$this->path/$directory", '\\/' );
 
         // Already exists or we've created it!
         if ( is_dir( $path ) || mkdir( $path, $mode, $recursive ) ) {
@@ -74,7 +74,9 @@ Class Directory
      */
     public function exists( string $directory = '' ) : bool
     {
-        return is_dir( "$this->path/$directory" );
+        $path = rtrim( "$this->path/$directory", '\\/' );
+
+        return is_dir( $path );
     }
 
     /**
@@ -85,7 +87,7 @@ Class Directory
      */
     public function delete( string $directory = '' ) : bool
     {
-        $path = "$this->path/$directory";
+        $path = rtrim( "$this->path/$directory", '\\/' );
 
         return rmdir( $path );
     }
