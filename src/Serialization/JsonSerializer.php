@@ -27,7 +27,18 @@ Class JsonSerializer Implements SerializerInterface
      *
      * @var int $encoding Encoding options
      */
-    static $encoding = JSON_FORCE_OBJECT | JSON_PRESERVE_ZERO_FRACTION;
+    private $encoding = JSON_FORCE_OBJECT | JSON_PRESERVE_ZERO_FRACTION;
+
+    /**
+     * Set the JSON encoding options flags
+     *
+     * @param int $encoding Encoding options
+     * @return void         N/a
+     */
+    public function setEncoding( int $encoding ) : void
+    {
+        $this->encoding = $encoding;
+    }
 
     /**
      * Serialize the cache item into JSON
@@ -39,7 +50,7 @@ Class JsonSerializer Implements SerializerInterface
     {
         // TODO: Object serialization
 
-        $serialized = json_encode( $item, self::$encoding );
+        $serialized = json_encode( $item, $this->encoding );
 
         return $serialized;
     }
