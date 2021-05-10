@@ -2,6 +2,12 @@
 
 namespace Clvarley\Cache\Filesystem;
 
+use function is_file;
+use function file_put_contents;
+use function file_get_contents;
+
+use const LOCK_EX;
+
 /**
  * Utility class for managing files
  *
@@ -20,16 +26,24 @@ Class File
 
     public function exists() : bool
     {
-        // TODO:
+        return is_file( $this->filepath );
     }
 
     public function write( string $content ) : bool
     {
-        // TODO:
+        return (bool)file_put_contents( $this->filepath, $content, LOCK_EX );
     }
 
     public function read() : string
     {
-        // TODO:
+        // TODO: Possibly throw exception?
+        if ( !$this->exists() ) {
+            return '';
+        }
+
+        $content = file_get_contents( $this->filepath );
+        $content = (string)$content;
+
+        return $content;
     }
 }
