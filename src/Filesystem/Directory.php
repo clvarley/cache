@@ -24,7 +24,7 @@ Class Directory
     private $path;
 
     /**
-     * Creates a new wrapper around the given directorys
+     * Creates a new wrapper around the given directory
      *
      * @param string $path Directory path
      */
