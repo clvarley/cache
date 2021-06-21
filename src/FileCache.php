@@ -129,7 +129,7 @@ Class FileCache Implements CacheInterface
 
         if ( !empty( $parts ) ) {
             $path = implode( '/', $parts );
-            $directory = $this->directory->create( $path );
+            $directory = $this->directory->create( $path, 0755, true );
         } else {
             $directory = $this->directory;
         }
