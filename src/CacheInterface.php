@@ -22,8 +22,8 @@ Interface CacheInterface
     /**
      * Store an item in the cache
      *
-     * If not provided, the `$lifetime` parameter should default to a default
-     * value sensible for the cache method being used.
+     * Cache lifetime in seconds. If not provided, the `$lifetime` parameter
+     * should default to a value sensible for the cache method being used.
      *
      * @param string $key   Item key
      * @param mixed $value  Item value
