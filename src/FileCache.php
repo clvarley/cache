@@ -123,10 +123,10 @@ Class FileCache Implements CacheInterface
         $item = new CacheItem( $value, $lifetime );
         $content = $this->serializer->serialize( $item );
 
-        // Create sub-directories (if required)
         $parts = $this->splitKey( $key );
         $filename = array_pop( $parts );
 
+        // Create sub-directories (if required)
         if ( !empty( $parts ) ) {
             $path = implode( '/', $parts );
             $directory = $this->directory->create( $path, 0755, true );
