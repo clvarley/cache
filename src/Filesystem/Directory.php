@@ -46,7 +46,7 @@ Class Directory
     /**
      * Attempt to create this (or a given child) directory
      *
-     * @param string $directory Directory path
+     * @param string $directory (Optional) Directory path
      * @param int $mode         (Optional) Directory permissions
      * @param bool $recursive   (Optional) Create nested directories?
      * @return Directory|null   Directory

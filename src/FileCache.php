@@ -128,7 +128,8 @@ Class FileCache Implements CacheInterface
         $filename = array_pop( $parts );
 
         if ( !empty( $parts ) ) {
-            $directory = $this->createDirectories( $parts );
+            $path = implode( '/', $parts );
+            $directory = $this->directory->create( $path );
         } else {
             $directory = $this->directory;
         }
@@ -161,27 +162,5 @@ Class FileCache Implements CacheInterface
         }
 
         return $parts;
-    }
-
-    /**
-     * Attempts to create the given directory tree
-     *
-     * @param string[] $directories Directory names
-     * @return Directory|null       Directory object
-     */
-    private function createDirectories( array $directories ) : ?Directory
-    {
-        $current = $this->directory;
-
-        // Recurse down and create
-        foreach ( $directories as $directory ) {
-            $current = $current->create( $directory );
-
-            if ( $current === null ) {
-                return null;
-            }
-        }
-
-        return $current;
     }
 }
