@@ -4,8 +4,6 @@ namespace Clvarley\Cache;
 
 use function time;
 
-use const PHP_INT_MAX;
-
 /**
  * Represents a single item in the cache
  *

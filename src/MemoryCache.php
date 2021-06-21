@@ -5,8 +5,6 @@ namespace Clvarley\Cache;
 use Clvarley\Cache\CacheInterface;
 use Clvarley\Cache\CacheItem;
 
-use const PHP_INT_MAX;
-
 /**
  * Very simple in memory cache store
  *
