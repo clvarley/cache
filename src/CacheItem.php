@@ -7,6 +7,7 @@ use function time;
 /**
  * Represents a single item in the cache
  *
+ * @template T
  * @package Cache
  * @author clvarley
  */
@@ -15,6 +16,8 @@ Final Class CacheItem
 
     /**
      * The actual value being cached
+     *
+     * @psalm-var T $value
      *
      * @var mixed $value Item value
      */
@@ -31,6 +34,8 @@ Final Class CacheItem
 
     /**
      * Creates a new cache item from the value supplied
+     *
+     * @psalm-param T $value
      *
      * @param mixed $value  Item value
      * @param int $lifetime Item lifetime

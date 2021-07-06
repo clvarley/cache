@@ -17,6 +17,8 @@ Class MemoryCache Implements CacheInterface
     /**
      *  Currently stored items
      *
+     * @psalm-var array<string,CacheItem> $items
+     *
      * @var CacheItem[] $items Cache items
      */
     private $items = [];
