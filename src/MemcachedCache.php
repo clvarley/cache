@@ -63,6 +63,7 @@ Class MemcachedCache Implements CacheInterface
      */
     public function get( string $key ) /* : ?mixed */
     {
+        /** @var mixed|false $result */
         $result = $this->memcached->get( $key );
 
         // Not found in cache
