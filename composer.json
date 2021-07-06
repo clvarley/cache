@@ -14,7 +14,8 @@
         "php": ">=7.1"
     },
     "require-dev": {
-        "vimeo/psalm": "^4.7"
+        "vimeo/psalm": "^4.7",
+        "jetbrains/phpstorm-stubs": "^2021.1"
     },
     "autoload": {
         "psr-4": {
