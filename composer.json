@@ -6,11 +6,12 @@
     "license": "MIT",
     "readme": "README.md",
     "suggest": {
-        "ext-igbinary": "More efficient value serialization"
+        "ext-igbinary": "More efficient cache value serialization",
+        "ext-json": "Allow cache values to be stored as JSON",
+        "ext-memcached": "Store cache items using MemCached servers"
     },
     "require": {
-        "php": ">=7.1",
-        "ext-json": "*"
+        "php": ">=7.1"
     },
     "require-dev": {
         "vimeo/psalm": "^4.7"

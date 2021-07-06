@@ -12,6 +12,7 @@ use Clvarley\Cache\Key\Md5Generator;
 use Clvarley\Cache\Exception\DeserializationException;
 use Clvarley\Cache\Exception\CacheWriteException;
 
+use function unlink;
 use function array_pop;
 use function implode;
 use function explode;
@@ -109,6 +110,7 @@ Class FileCache Implements CacheInterface
 
         // Item expired?
         if ( !$item->isValid() ) {
+            unlink( $filepath );
             return null;
         }
 
