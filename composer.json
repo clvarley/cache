@@ -11,15 +11,21 @@
         "ext-memcached": "Store cache items using MemCached servers"
     },
     "require": {
-        "php": ">=7.1"
+        "php": "^7.1 || ^8"
     },
     "require-dev": {
         "vimeo/psalm": "^4.7",
-        "jetbrains/phpstorm-stubs": "^2021.1"
+        "jetbrains/phpstorm-stubs": "^2021.1",
+        "phpunit/phpunit": "^7.5"
     },
     "autoload": {
         "psr-4": {
             "Clvarley\\Cache\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Clvarley\\Cache\\Tests\\": "tests/"
         }
     }
 }
