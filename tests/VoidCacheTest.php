@@ -5,6 +5,8 @@ namespace Clvarley\Cache\Tests;
 use Clvarley\Cache\VoidCache;
 use PHPUnit\Framework\TestCase;
 
+use function sleep;
+
 /**
  * @group Caches
  */

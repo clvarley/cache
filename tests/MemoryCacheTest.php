@@ -6,6 +6,8 @@ use Clvarley\Cache\MemoryCache;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
+use function sleep;
+
 /**
  * @group Caches
  */
