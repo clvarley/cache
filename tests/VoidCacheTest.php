@@ -32,7 +32,7 @@ Class VoidCacheTest Extends TestCase
         $cache = new VoidCache();
         $cache->set( "expired", 123, 1 );
 
-        sleep( 1 );
+        sleep( 1 ); // Force expiry
 
         $this->assertNull( $cache->get( "expired" ) );
     }
@@ -40,7 +40,7 @@ Class VoidCacheTest Extends TestCase
     /**
      * Make sure permanent cache items DON'T return
      */
-    public function testInfiniteItem()
+    public function testPermanentItem()
     {
         $cache = new VoidCache();
         $cache->set( "infinite", 123, 0 );

@@ -41,7 +41,7 @@ Class CacheItemTest Extends TestCase
     {
         $cache_item = new CacheItem( "Test", 1 );
 
-        sleep( 1 ); // Force wait
+        sleep( 1 ); // Force expiry
 
         $this->assertFalse( $cache_item->isValid() );
     }
@@ -63,7 +63,7 @@ Class CacheItemTest Extends TestCase
      *
      * @depends testEmptyExpiry
      */
-    public function testInfiniteLifetime( CacheItem $item )
+    public function testPermanentLifetime( CacheItem $item )
     {
         $this->assertTrue( $item->isValid() );
     }
