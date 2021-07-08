@@ -15,21 +15,43 @@ Class MemoryCacheTest Extends TestCase
 {
 
     /**
+     * Test object for equality check
+     *
+     * @param stdClass $test_obj
+     */
+    private $test_obj;
+
+    /**
+     * Creates a new memory cache with the given lifetime
+     *
+     * @param int $lifetime Cache lifetime
+     * @return MemoryCache  Cache store
+     */
+    private function createCache( int $lifetime ) : MemoryCache
+    {
+        $this->test_obj = new stdClass;
+        $this->test_obj->id = 123;
+        $this->test_obj->prop = "test";
+
+        $cache = new MemoryCache();
+        $cache->set( "testObj",    $this->test_obj, $lifetime );
+        $cache->set( "testString", "123",           $lifetime );
+        $cache->set( "testInt",    123,             $lifetime );
+        $cache->set( "testArr",    [ 1, 2, 3 ],     $lifetime );
+
+        return $cache;
+    }
+
+    /**
      * Make sure items can be read from the cache
      */
     public function testValidItems()
     {
-        $cache = new MemoryCache();
+        $lifetime = 1; // 1 second
 
-        $test_obj = new stdClass;
-        $test_obj->prop = "test";
+        $cache = $this->createCache( $lifetime );
 
-        $cache->set( "testObj", $test_obj, 1 );
-        $cache->set( "testString", "123", 1 );
-        $cache->set( "testInt", 123, 1 );
-        $cache->set( "testArr", [ 1, 2, 3 ], 1 );
-
-        $this->assertSame(   $cache->get( "testObj" ),    $test_obj );
+        $this->assertSame(   $cache->get( "testObj" ),    $this->test_obj );
         $this->assertEquals( $cache->get( "testString" ), "123" );
         $this->assertEquals( $cache->get( "testInt" ),    123 );
         $this->assertEquals( $cache->get( "testArr" ),    [ 1, 2, 3 ] );
@@ -40,17 +62,11 @@ Class MemoryCacheTest Extends TestCase
      */
     public function testExpiredItems()
     {
-        $cache = new MemoryCache();
+        $lifetime = 1; // 1 second
 
-        $test_obj = new stdClass;
-        $test_obj->prop = "test";
+        $cache = $this->createCache( $lifetime );
 
-        $cache->set( "testObj", $test_obj, 1 );
-        $cache->set( "testString", "123", 1 );
-        $cache->set( "testInt", 123, 1 );
-        $cache->set( "testArr", [ 1, 2, 3 ], 1 );
-
-        sleep( 1 ); // Force expiry
+        sleep( $lifetime ); // Force expiry
 
         $this->assertNull( $cache->get( "testObj" ) );
         $this->assertNull( $cache->get( "testString" ) );
@@ -63,17 +79,11 @@ Class MemoryCacheTest Extends TestCase
      */
     public function testPermanentItems()
     {
-        $cache = new MemoryCache();
+        $lifetime = 0; // No expiry
 
-        $test_obj = new stdClass;
-        $test_obj->prop = "test";
+        $cache = $this->createCache( $lifetime );
 
-        $cache->set( "testObj", $test_obj, 0 );
-        $cache->set( "testString", "123", 0 );
-        $cache->set( "testInt", 123, 0 );
-        $cache->set( "testArr", [ 1, 2, 3 ], 0 );
-
-        $this->assertSame(   $cache->get( "testObj" ),    $test_obj );
+        $this->assertSame(   $cache->get( "testObj" ),    $this->test_obj );
         $this->assertEquals( $cache->get( "testString" ), "123" );
         $this->assertEquals( $cache->get( "testInt" ),    123 );
         $this->assertEquals( $cache->get( "testArr" ),    [ 1, 2, 3 ] );
