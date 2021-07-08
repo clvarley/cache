@@ -33,7 +33,7 @@ Class IgbinarySerializerTest Extends TestCase
     {
         $this->start_time = time();
 
-        $item = new CacheItem( $value, 10 );
+        $item = new CacheItem( $value, 1 );
         return $item;
     }
 
