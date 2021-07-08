@@ -25,7 +25,7 @@ Class VoidCacheTest Extends TestCase
     }
 
     /**
-     * Make sure expired cache items don't return
+     * Make sure expired cache items DON'T return
      */
     public function testExpiredItem()
     {
@@ -34,11 +34,11 @@ Class VoidCacheTest Extends TestCase
 
         sleep( 1 );
 
-        $this->assetNull( $cache->get( "expired" ) );
+        $this->assertNull( $cache->get( "expired" ) );
     }
 
     /**
-     * Make sure permanent cache items don't return
+     * Make sure permanent cache items DON'T return
      */
     public function testInfiniteItem()
     {
