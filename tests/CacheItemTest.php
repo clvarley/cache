@@ -5,6 +5,9 @@ namespace Clvarley\Cache\Tests;
 use Clvarley\Cache\CacheItem;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @group Shared
+ */
 Class CacheItemTest Extends TestCase
 {
 
