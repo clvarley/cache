@@ -9,7 +9,7 @@ branches:
     - main
     - /^release\/.*$/
 install:
-  - composer install --no-dev
+  - composer install --ignore-platform-reqs=php
 before_script:
   - php vendor/vimeo/psalm/psalm --clear-cache=true
 script:
