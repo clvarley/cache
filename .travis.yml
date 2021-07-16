@@ -4,5 +4,14 @@ php:
   - 7.4
   - 8.0
   - nightly
-install: composer install --dev
-script: php vendor/bin/phpunit ./tests
+branches:
+  only:
+    - main
+    - /^release\/.*$/
+install:
+  - composer install --no-dev
+before_script:
+  - php vendor/vimeo/psalm/psalm --clear-cache=true
+script:
+  - php vendor/bin/psalm
+  - php $COMPOSER_BIN_DIR/phpunit ./tests
