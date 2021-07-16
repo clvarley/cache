@@ -1,4 +1,7 @@
 # Simple Cache
+
+[![Build Status](https://travis-ci.com/clvarley/cache.svg?branch=main)](https://travis-ci.com/clvarley/cache)
+
 ## Requirements
 
 // TODO:
