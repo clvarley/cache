@@ -14,4 +14,4 @@ before_script:
   - php vendor/vimeo/psalm/psalm --clear-cache=true
 script:
   - php vendor/bin/psalm
-  - php $COMPOSER_BIN_DIR/phpunit ./tests
+  - php vendor/bin/phpunit ./tests
