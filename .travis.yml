@@ -5,3 +5,4 @@ php:
   - 8.0
   - nightly
 install: composer install --dev
+script: php vendor/bin/phpunit ./tests
