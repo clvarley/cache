@@ -6,6 +6,10 @@ use Clvarley\Cache\Tests\Serialization\AbstractSerializerTest;
 use Clvarley\Cache\Serialization\JsonSerializer;
 use stdClass;
 
+use function json_encode;
+
+use const JSON_PRESERVE_ZERO_FRACTION;
+
 /**
  * @group Serialization
  * @requires extension json
@@ -20,10 +24,15 @@ Class JsonSerializerTest Extends AbstractSerializerTest
     {
         $item = $this->createItem( "testString" );
 
+        var_dump( $item );
+
         $serializer = new JsonSerializer();
         $serialized = $serializer->serialize( $item );
 
-        $this->assertEquals( $serialized, "" ); // TODO: get serialized value
+        $this->assertEquals(
+            $serialized,
+            json_encode( $item, JSON_PRESERVE_ZERO_FRACTION )
+        );
 
         return $serialized;
     }
@@ -39,7 +48,7 @@ Class JsonSerializerTest Extends AbstractSerializerTest
         $item = $serializer->deserialize( $serialized );
 
         $this->assertEquals(          $item->value,  "testString"  );
-        $this->assertEqualsWithDelta( $item->expires, $this->start_time, 1 );
+        $this->assertEqualsWithDelta( $item->expires, self::$start_time, 1 );
     }
 
     /**
@@ -52,7 +61,10 @@ Class JsonSerializerTest Extends AbstractSerializerTest
         $serializer = new JsonSerializer();
         $serialized = $serializer->serialize( $item );
 
-        $this->assertEquals( $serialized, "" ); // TODO: get serialized value
+        $this->assertEquals(
+            $serialized,
+            json_encode( $item, JSON_PRESERVE_ZERO_FRACTION )
+        );
 
         return $serialized;
     }
@@ -68,7 +80,7 @@ Class JsonSerializerTest Extends AbstractSerializerTest
         $item = $serializer->deserialize( $serialized );
 
         $this->assertEquals(          $item->value,  [ 1, 2, 3 ]  );
-        $this->assertEqualsWithDelta( $item->expires, $this->start_time, 1 );
+        $this->assertEqualsWithDelta( $item->expires, self::$start_time, 1 );
     }
 
     /**
@@ -85,7 +97,10 @@ Class JsonSerializerTest Extends AbstractSerializerTest
         $serializer = new JsonSerializer();
         $serialized = $serializer->serialize( $item );
 
-        $this->assertEquals( $serialized, "" ); // TODO: get serialized value
+        $this->assertEquals(
+            $serialized,
+            json_encode( $item, JSON_PRESERVE_ZERO_FRACTION )
+        );
 
         return $serialized;
     }
@@ -103,6 +118,6 @@ Class JsonSerializerTest Extends AbstractSerializerTest
         $this->assertInstanceOf( stdClass::class, $item->value );
         $this->assertEquals( $item->value->id,   123 );
         $this->assertEquals( $item->value->prop, "test" );
-        $this->assertEqualsWithDelta( $item->expires, $this->start_time, 1 );
+        $this->assertEqualsWithDelta( $item->expires, self::$start_time, 1 );
     }
 }
