@@ -1,41 +1,17 @@
 <?php
 
-namespace Clvarley\Cache\Tests;
+namespace Clvarley\Cache\Tests\Serialization;
 
+use Clvarley\Cache\Tests\Serialization\AbstractSerializerTest;
 use Clvarley\Cache\Serialization\IgbinarySerializer;
-use Clvarley\Cache\CacheItem;
-use PHPUnit\Framework\TestCase;
 use stdClass;
-
-use function time;
 
 /**
  * @group Serialization
  * @requires extension igbinary
  */
-Class IgbinarySerializerTest Extends TestCase
+Class IgbinarySerializerTest Extends AbstractSerializerTest
 {
-
-    /**
-     * Time tests were started
-     *
-     * @var int $start_time Timestamp
-     */
-    private $start_time = 0;
-
-    /**
-     * Creates a new cache item with the given value
-     *
-     * @param mixed $value Cache value
-     * @return CacheItem   Cache item
-     */
-    private function createItem( /* mixed */ $value ) : CacheItem
-    {
-        $this->start_time = time();
-
-        $item = new CacheItem( $value, 1 );
-        return $item;
-    }
 
     /**
      * Make sure the IgbinarySerializer can serialize a string
