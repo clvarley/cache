@@ -69,14 +69,14 @@ Class JsonSerializer Implements SerializerInterface
         // Missing required data
         if (
             !isset( $deserialized->value )
-            || !isset( $deserialized->lifetime )
-            || !is_int( $deserialized->lifetime )
+            || !isset( $deserialized->expires )
+            || !is_int( $deserialized->expires )
         ) {
             throw new DeserializationException;
         }
 
         // TODO: Object deserialization
 
-        return new CacheItem( $deserialized->value, $deserialized->lifetime );
+        return new CacheItem( $deserialized->value, $deserialized->expires );
     }
 }
