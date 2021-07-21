@@ -17,7 +17,6 @@ Abstract Class AbstractSerializerTest Extends TestCase
     /**
      * Time tests were started
      *
-     * @internal
      * @var int $start_time Timestamp
      */
     protected static $start_time = 0;
@@ -25,7 +24,6 @@ Abstract Class AbstractSerializerTest Extends TestCase
     /**
      * Creates a new cache item with the given value
      *
-     * @internal
      * @param mixed $value Cache value
      * @return CacheItem   Cache item
      */
