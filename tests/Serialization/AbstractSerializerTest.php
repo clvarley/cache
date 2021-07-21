@@ -17,17 +17,19 @@ Abstract Class AbstractSerializerTest Extends TestCase
     /**
      * Time tests were started
      *
+     * @internal
      * @var int $start_time Timestamp
      */
-    private $start_time = 0;
+    protected $start_time = 0;
 
     /**
      * Creates a new cache item with the given value
      *
+     * @internal
      * @param mixed $value Cache value
      * @return CacheItem   Cache item
      */
-    private function createItem( /* mixed */ $value ) : CacheItem
+    protected function createItem( /* mixed */ $value ) : CacheItem
     {
         $this->start_time = time();
 
