@@ -24,8 +24,6 @@ Class JsonSerializerTest Extends AbstractSerializerTest
     {
         $item = $this->createItem( "testString" );
 
-        var_dump( $item );
-
         $serializer = new JsonSerializer();
         $serialized = $serializer->serialize( $item );
 
