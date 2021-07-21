@@ -20,7 +20,7 @@ Abstract Class AbstractSerializerTest Extends TestCase
      * @internal
      * @var int $start_time Timestamp
      */
-    protected $start_time = 0;
+    protected static $start_time = 0;
 
     /**
      * Creates a new cache item with the given value
@@ -31,9 +31,10 @@ Abstract Class AbstractSerializerTest Extends TestCase
      */
     protected function createItem( /* mixed */ $value ) : CacheItem
     {
-        $this->start_time = time();
+        static::$start_time = time();
 
         $item = new CacheItem( $value, 1 );
+
         return $item;
     }
 }

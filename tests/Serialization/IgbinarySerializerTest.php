@@ -39,7 +39,7 @@ Class IgbinarySerializerTest Extends AbstractSerializerTest
         $item = $serializer->deserialize( $serialized );
 
         $this->assertEquals(          $item->value,  "testString"  );
-        $this->assertEqualsWithDelta( $item->expires, $this->start_time, 1 );
+        $this->assertEqualsWithDelta( $item->expires, self::$start_time, 1 );
     }
 
     /**
@@ -68,7 +68,7 @@ Class IgbinarySerializerTest Extends AbstractSerializerTest
         $item = $serializer->deserialize( $serialized );
 
         $this->assertEquals(          $item->value,  [ 1, 2, 3 ]  );
-        $this->assertEqualsWithDelta( $item->expires, $this->start_time, 1 );
+        $this->assertEqualsWithDelta( $item->expires, self::$start_time, 1 );
     }
 
     /**
@@ -103,6 +103,6 @@ Class IgbinarySerializerTest Extends AbstractSerializerTest
         $this->assertInstanceOf( stdClass::class, $item->value );
         $this->assertEquals( $item->value->id,   123 );
         $this->assertEquals( $item->value->prop, "test" );
-        $this->assertEqualsWithDelta( $item->expires, $this->start_time, 1 );
+        $this->assertEqualsWithDelta( $item->expires, self::$start_time, 1 );
     }
 }
