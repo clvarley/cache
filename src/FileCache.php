@@ -48,6 +48,13 @@ Class FileCache Implements CacheInterface
     protected $generator;
 
     /**
+     * Permission flags to use during calls to `mkdir`
+     *
+     * @var int $permissions Directory permissions
+     */
+    protected $permissions = 0755;
+
+    /**
      * Create a file cache using the serialization and hashing methods provided
      *
      * @param string $directory                Root directory
@@ -78,6 +85,16 @@ Class FileCache Implements CacheInterface
             new PhpSerializer,
             new Md5Generator
         );
+    }
+
+    /**
+     * Set the permission level to be used when creating directories
+     *
+     * @param int $permissions Directory permissions
+     */
+    public function setPermissions( int $permissions ) : void
+    {
+        $this->permissions = $permissions;
     }
 
     /**
@@ -131,7 +148,11 @@ Class FileCache Implements CacheInterface
         // Create sub-directories (if required)
         if ( !empty( $parts ) ) {
             $path = implode( '/', $parts );
-            $directory = $this->directory->create( $path, 0755, true );
+            $directory = $this->directory->create(
+                $path,
+                $this->permissions,
+                true
+            );
         } else {
             $directory = $this->directory;
         }
