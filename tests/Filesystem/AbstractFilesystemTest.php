@@ -16,31 +16,26 @@ Abstract Class AbstractFilesystemTest Extends TestCase
 {
 
     /**
+     * Absolute path to the temp test directory
+     *
      * @var string $test_directory
      */
-    protected $test_directory;
-
-    /**
-     * Populate the path to the test directory
-     */
-    public static function setUpBeforeClass()
-    {
-        $this->test_directory = dirname( __DIR__ ) . '/cache';
-    }
+    protected static $test_directory;
 
     /**
      * Performs setup required by both the Directory and File classes
      */
-    public function setUp()
+    public static function setUpBeforeClass()
     {
-        mkdir( $this->test_directory, 0755 );
+        static::$test_directory = dirname( __DIR__ ) . '/cache';
+        mkdir( static::$test_directory, 0755 );
     }
 
     /**
-     * Performs teardown
+     * Performs teardown after all tests have run
      */
-    public function tearDown()
+    public static function tearDownAfterClass()
     {
-        rmdir( $this->test_directory );
+        rmdir( static::$test_directory );
     }
 }
