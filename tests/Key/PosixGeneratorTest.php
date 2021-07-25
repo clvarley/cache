@@ -32,7 +32,7 @@ Class PosixGeneratorTest Extends TestCase
         $example_keys = [
             'test'     => 'test',
             'key.name' => 'key.name',
-            'key name' => 'key name'
+            'key name' => 'keyname'
         ];
 
         foreach ( $example_keys as $value => $expected ) {
@@ -66,9 +66,9 @@ Class PosixGeneratorTest Extends TestCase
     public function testKeysWithSymbols()
     {
         $example_keys = [
-            '#t3st@!*&' => '#t3st@!*&',
-            '@\"[]\\{}' => '@\"[]\\{}',
-            '?<php;\'~' => '?<php;\'~'
+            '#t3st@!*&' => 't3st',
+            '@\"[]\\{}' => '',
+            '?<php;\'~' => 'php'
         ];
 
         foreach ( $example_keys as $value => $expected ) {
