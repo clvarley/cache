@@ -5,6 +5,9 @@ namespace Clvarley\Cache\Tests\Filesystem;
 use Clvarley\Cache\Tests\Filesystem\AbstractFilesystemTest;
 use Clvarley\Cache\Filesystem\Directory;
 
+use function is_dir;
+use function dirname;
+
 /**
  * @group Filesystem
  */
