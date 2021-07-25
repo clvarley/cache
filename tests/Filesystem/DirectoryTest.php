@@ -20,7 +20,7 @@ Class DirectoryTest Extends AbstractFilesystemTest
 
         $directory = new Directory( $path );
 
-        // Note: `getPath` strips trailing slashes
+        // NOTE: `getPath` strips trailing slashes
         $this->assertEquals(
             $directory->getPath(),
             static::$test_directory . '/test'
@@ -69,6 +69,7 @@ Class DirectoryTest Extends AbstractFilesystemTest
      */
     public function testNamedDirectoryCreation( Directory $directory )
     {
+        // Move into sub folder
         $directory = $directory->create( 'example' );
 
         $path = $directory->getPath();
@@ -102,16 +103,16 @@ Class DirectoryTest Extends AbstractFilesystemTest
      */
     public function testNamedDirectoryDeletion( Directory $directory )
     {
-        // Go back up one
         $path   = $directory->getPath();
         $parent = dirname( $path );
 
+        // Move into parent folder
         $directory = new Directory( $parent );
         $directory->delete( 'example' );
 
         $this->assertDirectoryNotExists( $path );
 
-        // NOTE: Requires PHPUnit 9 
+        // NOTE: Requires PHPUnit 9
         // $this->assertDirectoryDoesNotExist( $path );
         // $this->assertDirectoryIsNotReadable( $path );
         // $this->assertDirectoryIsNotWritable( $path );
