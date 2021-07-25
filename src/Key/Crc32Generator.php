@@ -23,6 +23,6 @@ Class Crc32Generator Implements KeyGeneratorInterface
      */
     public function generate( string $subject ) : string
     {
-        return hash( 'crc32', $subject );
+        return hash( 'crc32b', $subject );
     }
 }
