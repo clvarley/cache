@@ -8,8 +8,6 @@ use function dirname;
 use function mkdir;
 use function rmdir;
 
-use const __DIR__;
-
 /**
  * @abstract
  * @group Filesystem
@@ -25,7 +23,7 @@ Abstract Class AbstractFilesystemTest Extends TestCase
     /**
      * Populate the path to the test directory
      */
-    public function setUpBeforeClass()
+    public static function setUpBeforeClass()
     {
         $this->test_directory = dirname( __DIR__ ) . '/cache';
     }
