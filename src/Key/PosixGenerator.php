@@ -23,6 +23,6 @@ Class PosixGenerator Implements KeyGeneratorInterface
      */
     public function generate( string $subject ) : string
     {
-        return preg_replace( '/[A-Za-z0-9_\-\.]/', '', $subject );
+        return preg_replace( '/[^A-Za-z0-9_\-\.]/', '', $subject );
     }
 }
