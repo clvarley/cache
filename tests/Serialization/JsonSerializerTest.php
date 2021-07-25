@@ -29,7 +29,7 @@ Class JsonSerializerTest Extends AbstractSerializerTest
 
         $this->assertEquals(
             $serialized,
-            json_encode( $item, JSON_PRESERVE_ZERO_FRACTION )
+            "{\"value\":\"testString\",\"expires\":{$item->expires}}"
         );
 
         return $serialized;
@@ -61,7 +61,7 @@ Class JsonSerializerTest Extends AbstractSerializerTest
 
         $this->assertEquals(
             $serialized,
-            json_encode( $item, JSON_PRESERVE_ZERO_FRACTION )
+            "{\"value\":[1,2,3],\"expires\":{$item->expires}}"
         );
 
         return $serialized;
@@ -97,7 +97,7 @@ Class JsonSerializerTest Extends AbstractSerializerTest
 
         $this->assertEquals(
             $serialized,
-            json_encode( $item, JSON_PRESERVE_ZERO_FRACTION )
+            "{\"value\":{\"id\":123,\"prop\":\"test\"},\"expires\":{$item->expires}}"
         );
 
         return $serialized;
