@@ -25,7 +25,7 @@ Abstract Class AbstractFilesystemTest Extends TestCase
     /**
      * Performs setup required by both the Directory and File classes
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass() : void
     {
         static::$test_directory = dirname( __DIR__ ) . '/cache';
         mkdir( static::$test_directory, 0755 );
@@ -34,7 +34,7 @@ Abstract Class AbstractFilesystemTest Extends TestCase
     /**
      * Performs teardown after all tests have run
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass() : void
     {
         rmdir( static::$test_directory );
     }

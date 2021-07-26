@@ -17,7 +17,7 @@ Class PhpSerializerTest Extends AbstractSerializerTest
     /**
      * Make sure the PhpSerializer can serialize a string
      */
-    public function testSerializeString()
+    public function testCanSerializeString()
     {
         $item = $this->createItem( "testString" );
 
@@ -35,9 +35,9 @@ Class PhpSerializerTest Extends AbstractSerializerTest
     /**
      * Make sure the PhpSerializer can deserialize a string
      *
-     * @depends testSerializeString
+     * @depends testCanSerializeString
      */
-    public function testDeserializeString( string $serialized )
+    public function testCanDeserializeString( string $serialized )
     {
         $serializer = new PhpSerializer();
         $item = $serializer->deserialize( $serialized );
@@ -49,7 +49,7 @@ Class PhpSerializerTest Extends AbstractSerializerTest
     /**
      * Make sure the PhpSerializer can serialize an array
      */
-    public function testSerializeArray()
+    public function testCanSerializeArray()
     {
         $item = $this->createItem( [ 1, 2, 3 ] );
 
@@ -67,9 +67,9 @@ Class PhpSerializerTest Extends AbstractSerializerTest
     /**
      * Make sure the PhpSerializer can deserialize an array
      *
-     * @depends testSerializeArray
+     * @depends testCanSerializeArray
      */
-    public function testDeserializeArray( string $serialized )
+    public function testCanDeserializeArray( string $serialized )
     {
         $serializer = new PhpSerializer();
         $item = $serializer->deserialize( $serialized );
@@ -81,7 +81,7 @@ Class PhpSerializerTest Extends AbstractSerializerTest
     /**
      * Make sure the PhpSerializer can serialize an object
      */
-    public function testSerializeObject()
+    public function testCanSerializeAnonymousClass()
     {
         $object = new stdClass;
         $object->id = 123;
@@ -103,9 +103,9 @@ Class PhpSerializerTest Extends AbstractSerializerTest
     /**
      * Make sure the PhpSerializer can deserialize an object
      *
-     * @depends testSerializeObject
+     * @depends testCanSerializeAnonymousClass
      */
-    public function testDeserializeObject( string $serialized )
+    public function testCanDeserializeAnonymousClass( string $serialized )
     {
         $serializer = new PhpSerializer();
         $item = $serializer->deserialize( $serialized );

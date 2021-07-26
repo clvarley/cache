@@ -17,7 +17,7 @@ Class DirectoryTest Extends AbstractFilesystemTest
     /**
      * Make sure the `getPath` function returns expected value
      */
-    public function testDirectoryGetPath()
+    public function testReturnsDirectoryPath()
     {
         $path = static::$test_directory . '/test/';
 
@@ -33,11 +33,26 @@ Class DirectoryTest Extends AbstractFilesystemTest
     }
 
     /**
+     * Make sure calls to `exists` return true if directory exists
+     *
+     * @depends testCanCreateChildDirectory
+     */
+    public function testCheckIfDirectoryExists( Directory $directory )
+    {
+        $path = $directory->getPath();
+
+        $this->assertTrue( $directory->exists() );
+        $this->assertTrue( is_dir( $path ) );
+
+        return $directory;
+    }
+
+    /**
      * Make sure calls to `exists` return false if directory is non-existant
      *
-     * @depends testDirectoryGetPath
+     * @depends testReturnsDirectoryPath
      */
-    public function testDirectoryDoesntExist( Directory $directory )
+    public function testCheckIfDirectoryDoesNotExist( Directory $directory )
     {
         $path = $directory->getPath();
 
@@ -50,9 +65,9 @@ Class DirectoryTest Extends AbstractFilesystemTest
     /**
      * Make sure the current directory is created properly
      *
-     * @depends testDirectoryDoesntExist
+     * @depends testCheckIfDirectoryDoesNotExist
      */
-    public function testCurrentDirectoryCreation( Directory $directory )
+    public function testCanCreateCurrentDirectory( Directory $directory )
     {
         $directory->create();
 
@@ -68,9 +83,9 @@ Class DirectoryTest Extends AbstractFilesystemTest
     /**
      * Make sure named directories are created properly
      *
-     * @depends testCurrentDirectoryCreation
+     * @depends testCanCreateCurrentDirectory
      */
-    public function testNamedDirectoryCreation( Directory $directory )
+    public function testCanCreateChildDirectory( Directory $directory )
     {
         // Move into sub folder
         $directory = $directory->create( 'example' );
@@ -85,16 +100,17 @@ Class DirectoryTest Extends AbstractFilesystemTest
     }
 
     /**
-     * Make sure calls to `exists` return true if directory exists
+     * Make sure the current directory is deleted properly
      *
-     * @depends testNamedDirectoryCreation
+     * @depends testCanDeleteChildDirectory
      */
-    public function testDirectoryExists( Directory $directory )
+    public function testCanDeleteCurrentDirectory( Directory $directory )
     {
         $path = $directory->getPath();
 
-        $this->assertTrue( $directory->exists() );
-        $this->assertTrue( is_dir( $path ) );
+        $directory->delete();
+
+        $this->assertDirectoryDoesNotExist( $path );
 
         return $directory;
     }
@@ -102,9 +118,9 @@ Class DirectoryTest Extends AbstractFilesystemTest
     /**
      * Make sure the named directory is deleted properly
      *
-     * @depends testDirectoryExists
+     * @depends testCheckIfDirectoryExists
      */
-    public function testNamedDirectoryDeletion( Directory $directory )
+    public function testCanDeleteChildDirectory( Directory $directory )
     {
         $path   = $directory->getPath();
         $parent = dirname( $path );
@@ -113,33 +129,7 @@ Class DirectoryTest Extends AbstractFilesystemTest
         $directory = new Directory( $parent );
         $directory->delete( 'example' );
 
-        $this->assertDirectoryNotExists( $path );
-
-        // NOTE: Requires PHPUnit 9
-        // $this->assertDirectoryDoesNotExist( $path );
-        // $this->assertDirectoryIsNotReadable( $path );
-        // $this->assertDirectoryIsNotWritable( $path );
-
-        return $directory;
-    }
-
-    /**
-     * Make sure the current directory is deleted properly
-     *
-     * @depends testNamedDirectoryDeletion
-     */
-    public function testCurrentDirectoryDeletion( Directory $directory )
-    {
-        $path = $directory->getPath();
-
-        $directory->delete();
-
-        $this->assertDirectoryNotExists( $path );
-
-        // NOTE: Requires PHPUnit 9
-        // $this->assertDirectoryDoesNotExist( $path );
-        // $this->assertDirectoryIsNotReadable( $path );
-        // $this->assertDirectoryIsNotWritable( $path );
+        $this->assertDirectoryDoesNotExist( $path );
 
         return $directory;
     }

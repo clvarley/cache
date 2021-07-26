@@ -15,7 +15,7 @@ Class FileTest Extends AbstractFilesystemTest
 
     static $content = 'Here is some example file content!';
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass() : void
     {
         unlink( static::$test_directory . '/example.txt' );
 
@@ -23,16 +23,31 @@ Class FileTest Extends AbstractFilesystemTest
     }
 
     /**
+     * Make sure calls to `exists` return true if the file exists
+     *
+     * @depends testCanWriteToFiles
+     */
+    public function testCheckIfFileExists( File $file )
+    {
+        $path = static::$test_directory . '/example.txt';
+
+        $this->assertTrue( $file->exists() );
+        $this->assertFileExists( $path );
+
+        return $file;
+    }
+
+    /**
      * Make sure calls to `exists` return false if the file is non-existant
      */
-    public function testFileDoesntExist()
+    public function testCheckIfFileDoesNotExist()
     {
         $path = static::$test_directory . '/example.txt';
 
         $file = new File( $path );
 
         $this->assertFalse( $file->exists() );
-        $this->assertFileNotExists( $path );
+        $this->assertFileDoesNotExist( $path );
 
         return $file;
     }
@@ -40,9 +55,9 @@ Class FileTest Extends AbstractFilesystemTest
     /**
      * Make sure values can be written to files
      *
-     * @depends testFileDoesntExist
+     * @depends testCheckIfFileDoesNotExist
      */
-    public function testFileWrite( File $file )
+    public function testCanWriteToFiles( File $file )
     {
         $path = static::$test_directory . '/example.txt';
 
@@ -57,26 +72,11 @@ Class FileTest Extends AbstractFilesystemTest
     }
 
     /**
-     * Make sure calls to `exists` return true if the file exists
-     *
-     * @depends testFileWrite
-     */
-    public function testFileExists( File $file )
-    {
-        $path = static::$test_directory . '/example.txt';
-
-        $this->assertTrue( $file->exists() );
-        $this->assertFileExists( $path );
-
-        return $file;
-    }
-
-    /**
      * Make sure values can be read to files
      *
-     * @depends testFileExists
+     * @depends testCheckIfFileExists
      */
-    public function testFileRead( File $file )
+    public function testCanReadFromFiles( File $file )
     {
         $content = $file->read();
 
@@ -86,7 +86,7 @@ Class FileTest Extends AbstractFilesystemTest
     /**
      * Make sure trying to read non-existant files returns an empty string
      */
-    public function testNonExistantFileRead()
+    public function testFailsGracefullyIfFileDoesNotExist()
     {
         $path = static::$test_directory . '/not-here.txt';
 

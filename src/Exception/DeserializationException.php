@@ -10,7 +10,7 @@ use RuntimeException;
  * @package Cache
  * @author clvarley
  */
-Final Class DeserializationException Extends RuntimeException
+Class DeserializationException Extends RuntimeException
 {
     // TODO:
 }

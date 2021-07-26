@@ -11,12 +11,12 @@
         "ext-memcached": "Store cache items using MemCached servers"
     },
     "require": {
-        "php": "^7.1 || ^8"
+        "php": "^7.3 || ^8"
     },
     "require-dev": {
         "vimeo/psalm": "^4.7",
         "jetbrains/phpstorm-stubs": "^2021.1",
-        "phpunit/phpunit": "^7.5"
+        "phpunit/phpunit": "^9.5"
     },
     "autoload": {
         "psr-4": {
