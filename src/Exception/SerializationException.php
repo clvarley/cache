@@ -10,7 +10,7 @@ use RuntimeException;
  * @package Cache
  * @author clvarley
  */
-Final Class SerializationException Extends RuntimeException
+Class SerializationException Extends RuntimeException
 {
     // TODO:
 }
