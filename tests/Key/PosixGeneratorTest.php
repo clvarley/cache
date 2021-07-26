@@ -18,7 +18,7 @@ Class PosixGeneratorTest Extends TestCase
      */
     public $generator;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->generator = new PosixGenerator();
     }

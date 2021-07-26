@@ -15,7 +15,7 @@ Class FileTest Extends AbstractFilesystemTest
 
     static $content = 'Here is some example file content!';
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass() : void
     {
         unlink( static::$test_directory . '/example.txt' );
 
@@ -32,7 +32,7 @@ Class FileTest Extends AbstractFilesystemTest
         $file = new File( $path );
 
         $this->assertFalse( $file->exists() );
-        $this->assertFileNotExists( $path );
+        $this->assertFileDoesNotExist( $path );
 
         return $file;
     }

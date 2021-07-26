@@ -113,12 +113,7 @@ Class DirectoryTest Extends AbstractFilesystemTest
         $directory = new Directory( $parent );
         $directory->delete( 'example' );
 
-        $this->assertDirectoryNotExists( $path );
-
-        // NOTE: Requires PHPUnit 9
-        // $this->assertDirectoryDoesNotExist( $path );
-        // $this->assertDirectoryIsNotReadable( $path );
-        // $this->assertDirectoryIsNotWritable( $path );
+        $this->assertDirectoryDoesNotExist( $path );
 
         return $directory;
     }
@@ -134,12 +129,7 @@ Class DirectoryTest Extends AbstractFilesystemTest
 
         $directory->delete();
 
-        $this->assertDirectoryNotExists( $path );
-
-        // NOTE: Requires PHPUnit 9
-        // $this->assertDirectoryDoesNotExist( $path );
-        // $this->assertDirectoryIsNotReadable( $path );
-        // $this->assertDirectoryIsNotWritable( $path );
+        $this->assertDirectoryDoesNotExist( $path );
 
         return $directory;
     }

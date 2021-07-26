@@ -18,7 +18,7 @@ Class Md5GeneratorTest Extends TestCase
      */
     public $generator;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->generator = new Md5Generator();
     }
