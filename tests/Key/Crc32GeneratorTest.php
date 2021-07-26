@@ -26,7 +26,7 @@ Class Crc32GeneratorTest Extends TestCase
     /**
      * Make sure the key generator works on simple strings
      */
-    public function testSimpleStringKeys()
+    public function testCanHashSimpleStrings()
     {
         // value => expected
         $example_keys = [
@@ -45,7 +45,7 @@ Class Crc32GeneratorTest Extends TestCase
     /**
      * Make sure the key generator works on simple numeric values
      */
-    public function testSimpleNumericKeys()
+    public function testCanHashNumericStrings()
     {
         $example_keys = [
             123 => '884863d2',
@@ -63,7 +63,7 @@ Class Crc32GeneratorTest Extends TestCase
     /**
      * Make sure the key generator behaves correctly with symbol characters
      */
-    public function testKeysWithSymbols()
+    public function testCanHashStringsWithSymbols()
     {
         $example_keys = [
             '#t3st@!*&' => '72fd8e32',
