@@ -15,6 +15,10 @@ A very simple collection of cache utilities.
 
 // TODO:
 
+## Usage
+
+// TODO:
+
 ## Cache Types
 ### File
 
@@ -40,6 +44,4 @@ A very simple collection of cache utilities.
 
 [Read more about VoidCache](docs/VoidCache.md).
 
-## Usage
-
-// TODO:
+## References
