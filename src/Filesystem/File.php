@@ -9,7 +9,7 @@ use function file_get_contents;
 use const LOCK_EX;
 
 /**
- * Utility class for managing files
+ * Utility class used to interact with text files
  *
  * @package Cache
  * @author clvarley
@@ -18,14 +18,14 @@ Class File
 {
 
     /**
-     * Path to the cache file
+     * Path to the current text file
      *
      * @var string $filepath File path
      */
     private $filepath;
 
     /**
-     * Creates a new wrapper around the given cache file
+     * Creates a new wrapper around the given text file
      *
      * @param string $filepath File path
      */
@@ -45,9 +45,9 @@ Class File
     }
 
     /**
-     * Attempt to write content to the given file
+     * Attempt to write content to the file
      *
-     * @param string $content File content
+     * @param string $content Content to be written
      * @return bool           Write successful?
      */
     public function write( string $content ) : bool
@@ -56,7 +56,7 @@ Class File
     }
 
     /**
-     * Attempt to read content from the given file
+     * Attempt to read content from the file
      *
      * @return string File content
      */
