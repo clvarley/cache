@@ -5,6 +5,13 @@
     "homepage": "https://github.com/clvarley/cache",
     "license": "MIT",
     "readme": "README.md",
+    "authors": [
+        {
+            "name": "Conor Varley",
+            "homepage": "https://github.com/clvarley",
+            "role": "Developer"
+        }
+    ],
     "suggest": {
         "ext-igbinary": "More efficient cache value serialization",
         "ext-json": "Allow cache values to be stored as JSON",
