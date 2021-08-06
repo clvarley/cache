@@ -5,6 +5,7 @@ namespace Clvarley\Cache\Tests\Serialization;
 use Clvarley\Cache\Tests\Serialization\AbstractSerializerTest;
 use Clvarley\Cache\Serialization\PhpSerializer;
 use stdClass;
+use SplFixedArray;
 
 use function serialize;
 
@@ -79,7 +80,7 @@ Class PhpSerializerTest Extends AbstractSerializerTest
     }
 
     /**
-     * Make sure the PhpSerializer can serialize an object
+     * Make sure the PhpSerializer can serialize an anonymous object
      */
     public function testCanSerializeAnonymousClass()
     {
@@ -101,7 +102,7 @@ Class PhpSerializerTest Extends AbstractSerializerTest
     }
 
     /**
-     * Make sure the PhpSerializer can deserialize an object
+     * Make sure the PhpSerializer can deserialize an anonymous object
      *
      * @depends testCanSerializeAnonymousClass
      */
@@ -115,4 +116,42 @@ Class PhpSerializerTest Extends AbstractSerializerTest
         $this->assertEquals( $item->value->prop, "test" );
         $this->assertEqualsWithDelta( $item->expires, self::$start_time, 1 );
     }
+
+    /**
+     * Make sure the PhpSerializer can serialize a known object
+     */
+    public function testCanSerializeKnownClass()
+    {
+        $vector = new SplFixedArray(2);
+        $vector[0] = 123;
+        $vector[1] = "test";
+
+        $item = $this->createItem( $vector );
+
+        $serializer = new PhpSerializer();
+        $serialized = $serializer->serialize( $item );
+
+        $this->assertEquals(
+            $serialized,
+            serialize( $item )
+        );
+
+        return $serialized;
+    }
+
+    /**
+     * Make sure the PhpSerializer can deserialize a known object
+     *
+     * @depends testCanSerializeKnownClass
+     */
+    public function testCanDeserializeKnownClass( string $serialized )
+    {
+        $serializer = new PhpSerializer();
+        $item = $serializer->deserialize( $serialized );
+
+        $this->assertInstanceOf( SplFixedArray::class, $item->value );
+        $this->assertEquals( $item->value[0], 123 );
+        $this->assertEquals( $item->value[1], "test" );
+        $this->assertEqualsWithDelta( $item->expires, self::$start_time, 1 );
+     }
 }
