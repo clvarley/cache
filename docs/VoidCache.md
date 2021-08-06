@@ -37,7 +37,7 @@ public function get( string $key ) : ?mixed;
 
 <dl>
   <dt>key</dt>
-  <dd>Item key</dd>
+  <dd>Item key.</dd>
 </dl>
 
 #### Return Value
@@ -62,7 +62,7 @@ public function set( string $key, mixed $value, int $lifetime = 0 ) : void;
   <dt>lifetime</dt>
   <dd>
     <p>Item lifetime (in seconds)</p>
-    <p>If left empty, item is set to never expire.</p>
+    <p>If left empty <code>$lifetime</code> defaults to 0 (never expire).</p>
   </dd>
 </dl>
 
