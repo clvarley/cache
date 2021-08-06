@@ -41,6 +41,11 @@ public function get( string $key ) : mixed;
 Returns the item value or **null** if the given key doesn't exist (or is
 expired).
 
+#### Throws
+
+May throw a [CacheReadException](Exception/CacheReadException.md) if there was
+an error reading from the cache.
+
 ### *set*
 
 Store an item in the cache.
@@ -67,6 +72,11 @@ public function set( string $key, mixed $value, int $lifetime = 0 ) : void;
 #### Return Value
 
 This function has no return value.
+
+#### Throws
+
+May throw a [CacheWriteException](Exception/CacheWriteException.md) if there was
+an error writing to the cache.
 
 ## See Also
 
