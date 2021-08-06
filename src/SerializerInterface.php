@@ -7,7 +7,7 @@ use Clvarley\Cache\Exception\SerializationException;
 use Clvarley\Cache\Exception\DeserializationException;
 
 /**
- * Interface for all classes capable of serializing values
+ * Contract for all classes that can perform serialization of cache items
  *
  * @package Cache
  * @author clvarley
