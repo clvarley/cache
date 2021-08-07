@@ -7,7 +7,7 @@ use Clvarley\Cache\KeyGeneratorInterface;
 use preg_replace;
 
 /**
- * Makes keys safe according to the POSIX portable filename standard
+ * Generator that guarantees POSIX portable file name compliant keys
  *
  * @package Cache
  * @author clvarley
