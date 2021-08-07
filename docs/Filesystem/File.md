@@ -11,7 +11,8 @@ Utility class used to interact with text files.
 ```php
 namespace Clvarley\Cache\Filesystem;
 
-Class File {
+Class File
+{
 
     /* Properties */
     private string $filepath;

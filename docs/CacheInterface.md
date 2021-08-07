@@ -82,6 +82,6 @@ an error writing to the cache.
 
 * [CacheItem](CacheItem.md)
 * [FileCache](FileCache.md)
-* [MemcachedCache.md](MemcachedCache.md)
+* [MemcachedCache](MemcachedCache.md)
 * [MemoryCache](MemoryCache.md)
 * [VoidCache](VoidCache.md)

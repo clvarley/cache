@@ -16,7 +16,7 @@ Class Sha1Generator Implements KeyGeneratorInterface
 {
 
     /**
-     * Creates a key using the MD5 algorithm
+     * Create a key using the MD5 algorithm
      *
      * @param string $subject Subject string
      * @return string         SHA1 key
