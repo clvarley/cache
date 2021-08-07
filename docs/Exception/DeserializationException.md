@@ -11,7 +11,7 @@ Exception thrown if an issue occurred during the deserialization process.
 ```php
 namespace Clvarley\Cache\Exception;
 
-Class DeserializationException Implements \RuntimeException {}
+Class DeserializationException Extends \RuntimeException {}
 ```
 
 ## See Also

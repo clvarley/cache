@@ -11,7 +11,7 @@ Exception thrown if an issue occurred during the serialization process.
 ```php
 namespace Clvarley\Cache\Exception;
 
-Class SerializationException Implements \RuntimeException {}
+Class SerializationException Extends \RuntimeException {}
 ```
 
 ## See Also
