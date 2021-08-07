@@ -6,6 +6,8 @@ Available since version 1.0.0
 
 Exception thrown if an issue occurred while reading from the cache.
 
+Extends PHP's internal [RuntimeException](https://www.php.net/manual/en/class.runtimeexception.php).
+
 ## Overview
 
 ```php
