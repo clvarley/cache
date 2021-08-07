@@ -21,7 +21,7 @@ Class Md5Generator Implements KeyGeneratorInterface
 }
 ```
 
-## Methods
+## Methods
 ### *generate*
 
 Create a key using the Md5 algorithm.
