@@ -30,7 +30,7 @@ Class VoidCache Implements CacheInterface
 Does nothing.
 
 ```php
-public function get( string $key ) : ?mixed;
+public function get( string $key ) : mixed;
 ```
 
 #### Parameters
