@@ -6,7 +6,7 @@ use Clvarley\Cache\CacheInterface;
 use Clvarley\Cache\CacheItem;
 
 /**
- * Very simple in memory cache store
+ * Cache that simply holds items in memory
  *
  * @package Cache
  * @author clvarley
