@@ -66,7 +66,7 @@ Class CacheItemTest Extends TestCase
      *
      * @depends testItemsWithNoLifetimeNeverExpire
      */
-    public function testItemsWithNoLifetimeAreConsideredValid( CacheItem $item )
+    public function testItemsWithNoLifetimeAreAlwaysValid( CacheItem $item )
     {
         $this->assertTrue( $item->isValid() );
     }

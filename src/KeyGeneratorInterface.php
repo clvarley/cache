@@ -3,7 +3,7 @@
 namespace Clvarley\Cache;
 
 /**
- * Adapters used to generate cache keys
+ * Contract for all classes that can hash cache keys
  *
  * @package Cache
  * @author clvarley
@@ -12,10 +12,10 @@ Interface KeyGeneratorInterface
 {
 
     /**
-     * Generate a key from the provided string
+     * Generate a hash from the provided string
      *
      * @param string $subject Subject string
-     * @return string         Key
+     * @return string         Hashed subject
      */
     public function generate( string $subject ) : string;
 

@@ -14,7 +14,7 @@ use const JSON_FORCE_OBJECT;
 use const JSON_PRESERVE_ZERO_FRACTION;
 
 /**
- * Serializes cache items into JSON
+ * Serializes cache items into JSON strings
  *
  * @package Cache
  * @author clvarley
@@ -30,7 +30,7 @@ Class JsonSerializer Implements SerializerInterface
     private $encoding = JSON_PRESERVE_ZERO_FRACTION;
 
     /**
-     * Set the JSON encoding options flags
+     * Set the JSON encoding option flags
      *
      * @param int $encoding Encoding options
      * @return void         N/a

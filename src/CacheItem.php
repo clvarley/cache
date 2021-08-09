@@ -5,7 +5,7 @@ namespace Clvarley\Cache;
 use function time;
 
 /**
- * Represents a single item in the cache
+ * Represents a single cache item
  *
  * @template T
  * @package Cache
@@ -37,13 +37,13 @@ Final Class CacheItem
      *
      * @psalm-param T $value
      *
-     * @param mixed $value  Item value
-     * @param int $lifetime Item lifetime
+     * @param mixed $value Item value
+     * @param int $expires Item lifetime
      */
-    public function __construct( /* mixed */ $value, int $lifetime )
+    public function __construct( /* mixed */ $value, int $expires )
     {
         $this->value   = $value;
-        $this->expires = ( $lifetime !== 0 ? time() + $lifetime : 0 );
+        $this->expires = ( $expires !== 0 ? time() + $expires : 0 );
     }
 
     /**
