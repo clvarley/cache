@@ -10,6 +10,8 @@ Useful when refactoring or testing. Allows you to type hint against the
 [CacheInterface](CacheInterface.md) contract, but with a cache that is
 guaranteed to never store items.
 
+Implements the [CacheInterface](CacheInterface.md).
+
 ## Overview
 
 ```php
