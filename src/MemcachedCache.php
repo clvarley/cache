@@ -6,7 +6,7 @@ use Clvarley\Cache\CacheInterface;
 use Memcached;
 
 /**
- * Memcached based cache adapter
+ * Cache that acts as a wrapper around Memcached
  *
  * @package Cache
  * @author clvarley
@@ -59,6 +59,21 @@ Class MemcachedCache Implements CacheInterface
     }
 
     /**
+     * Adds a new server to the server pool
+     *
+     * @param string $host    Server hostname
+     * @param int $port       Memcached port
+     * @param int $weight     (Optional) Server weighting
+     * @return self           Fluent interface
+     */
+    public function addServer( string $host, int $port, int $weight = 0) : self
+    {
+        $this->memcached->addServer( $host, $port, $weight );
+
+        return $this;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function get( string $key ) /* : ?mixed */
@@ -82,20 +97,5 @@ Class MemcachedCache Implements CacheInterface
     public function set( string $key, /* mixed */ $value, int $lifetime = 60 ) : void
     {
         $this->memcached->set( $key, $value, $lifetime );
-    }
-
-    /**
-     * Adds a new server to the server pool
-     *
-     * @param string $host    Server hostname
-     * @param int $port       Memcached port
-     * @param int $weight     (Optional) Server weighting
-     * @return self           Fluent interface
-     */
-    public function addServer( string $host, int $port, int $weight = 0) : self
-    {
-        $this->memcached->addServer( $host, $port, $weight );
-
-        return $this;
     }
 }
