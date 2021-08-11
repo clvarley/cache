@@ -151,7 +151,7 @@ Store an item in the cache.
 Will attempt to write the provided value to the filesystem.
 
 ```php
-public function set( string $key, mixed $value, int $lifetime = 0 ) : void;
+public function set( string $key, mixed $value, int $lifetime = 60 ) : void;
 ```
 
 #### Parameters
