@@ -18,7 +18,7 @@ use function implode;
 use function explode;
 
 /**
- * File backed caching system
+ * Cache that persists items to the filesystem
  *
  * @package Cache
  * @author clvarley
@@ -171,7 +171,7 @@ Class FileCache Implements CacheInterface
     }
 
     /**
-     * Splits the key into an array of hashed sub parts
+     * Splits the key into an array of hashes
      *
      * @param string $key Item key
      * @return string[]   Hashed parts
