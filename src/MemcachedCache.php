@@ -22,7 +22,7 @@ Class MemcachedCache Implements CacheInterface
     protected $memcached;
 
     /**
-     * Create a wrapper around the provided MemCached instance
+     * Create a wrapper around the provided Memcached instance
      *
      * @param Memcached $memcached Memcached instance
      */
@@ -32,13 +32,11 @@ Class MemcachedCache Implements CacheInterface
     }
 
     /**
-     * Creates a new MemcachedCache with sensible defaults
+     * Creates a new instance with sensible defaults
      *
      * Starts a new memcached session and connects to the provided server. The
-     * method signature mirrors that of {@see \Memcached::addServer}, more
-     * information about which can be found here:
-     *
-     * https://www.php.net/manual/en/memcached.addserver.php
+     * method signature mirrors that of {@see \Memcached::addServer}, allowing
+     * you to perform construction in one place.
      *
      * @static
      * @param string $host    Server hostname
@@ -61,12 +59,14 @@ Class MemcachedCache Implements CacheInterface
     /**
      * Adds a new server to the server pool
      *
+     * Merely a proxy for the {@see \Memcached::addServer} method.
+     *
      * @param string $host    Server hostname
      * @param int $port       Memcached port
      * @param int $weight     (Optional) Server weighting
      * @return self           Fluent interface
      */
-    public function addServer( string $host, int $port, int $weight = 0) : self
+    public function addServer( string $host, int $port, int $weight = 0 ) : self
     {
         $this->memcached->addServer( $host, $port, $weight );
 
@@ -87,6 +87,8 @@ Class MemcachedCache Implements CacheInterface
         ) {
             return null;
         }
+
+        // TODO: Figure out more robust error flow
 
         return $result;
     }
