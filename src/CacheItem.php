@@ -15,7 +15,7 @@ Final Class CacheItem
 {
 
     /**
-     * The actual value being cached
+     * The actual cache value
      *
      * @psalm-var T $value
      *

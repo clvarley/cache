@@ -26,6 +26,13 @@ Class CacheItem
 
 ## Properties
 
+<dl>
+  <dt>value</dt>
+  <dd>The actual cache value</dd>
+  <dt>expires</dt>
+  <dd>Timestamp of when this item expires</dd>
+</dl>
+
 ## Methods
 ### *__construct*
 
