@@ -2,7 +2,7 @@
 
 namespace Clvarley\Cache\Tests;
 
-use Clvarley\Cache\MemoryCache;
+use Clvarley\Cache\SimpleCache;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -11,7 +11,7 @@ use function sleep;
 /**
  * @group Caches
  */
-Class MemoryCacheTest Extends TestCase
+Class SimpleCacheTest Extends TestCase
 {
 
     /**
@@ -25,15 +25,15 @@ Class MemoryCacheTest Extends TestCase
      * Creates a new memory cache with the given lifetime
      *
      * @param int $lifetime Cache lifetime
-     * @return MemoryCache  Cache store
+     * @return SimpleCache  Cache store
      */
-    private function createCache( int $lifetime ) : MemoryCache
+    private function createCache( int $lifetime ) : SimpleCache
     {
         $this->test_obj = new stdClass;
         $this->test_obj->id = 123;
         $this->test_obj->prop = "test";
 
-        $cache = new MemoryCache();
+        $cache = new SimpleCache();
         $cache->set( "testObj",    $this->test_obj, $lifetime );
         $cache->set( "testString", "123",           $lifetime );
         $cache->set( "testInt",    123,             $lifetime );

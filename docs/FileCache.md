@@ -200,5 +200,5 @@ Returns an array of hashes.
 
 * [CacheInterface](CacheInterface.md)
 * [MemcachedCache](MemcachedCache.md)
-* [MemoryCache](MemoryCache.md)
+* [SimpleCache](SimpleCache.md)
 * [VoidCache](VoidCache.md)

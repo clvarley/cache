@@ -165,5 +165,5 @@ This function has no return value.
 
 * [CacheInterface](CacheInterface.md)
 * [FileCache](FileCache.md)
-* [MemoryCache](MemoryCache.md)
+* [SimpleCache](SimpleCache.md)
 * [VoidCache](VoidCache.md)
