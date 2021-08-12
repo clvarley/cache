@@ -12,6 +12,7 @@ A very simple collection of cache utilities.
 - [About](#about)
   - [Overview](#overview)
   - [Installation](#installation)
+  - [Versioning](#versioning)
   - [Contributions](#contributions)
 - [Cache Types](#cache-types)
   - [File](#file)
@@ -85,6 +86,17 @@ require_once '.../src/autoload.php';
 ```
 
 All of the `Clvarley\Cache\*` classes should now be loaded automatically.
+
+### Versioning
+
+Releases will follow the [semver](https://semver.org/) versioning scheme.
+
+Compatibility between minor version numbers is guaranteed, while any breaking
+updates (including bumps to the minimum PHP version) will constitute a major
+version number change.
+
+By following this system you should be able to download new features and bug
+fixes without having to change any of your own code. 🎉
 
 ### Contributions
 
