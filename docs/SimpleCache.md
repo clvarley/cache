@@ -1,4 +1,4 @@
-# MemoryCache
+# SimpleCache
 
 Available since version 1.0.0
 
@@ -13,7 +13,7 @@ Implements the [CacheInterface](CacheInterface.md).
 ```php
 namespace Clvarley\Cache;
 
-Class MemoryCache Implements CacheInterface
+Class SimpleCache Implements CacheInterface
 {
 
     /* Properties */

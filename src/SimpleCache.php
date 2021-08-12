@@ -11,7 +11,7 @@ use Clvarley\Cache\CacheItem;
  * @package Cache
  * @author clvarley
  */
-Class MemoryCache Implements CacheInterface
+Class SimpleCache Implements CacheInterface
 {
 
     /**

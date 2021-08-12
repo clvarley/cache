@@ -77,4 +77,4 @@ This function has no return value.
 * [CacheInterface](CacheInterface.md)
 * [FileCache](FileCache.md)
 * [MemcachedCache.md](MemcachedCache.md)
-* [MemoryCache](MemoryCache.md)
+* [SimpleCache](SimpleCache.md)
