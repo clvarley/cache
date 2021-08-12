@@ -92,6 +92,28 @@ $cache->set( 'forever', 'This should last forever!', 0 );
 In the above example, we cache the values for 10 seconds, 120 seconds and - by
 specifying a lifetime of 0 - forever respectively.
 
+##### Expired Items
+
+If you try to access an item that doesn't exist in the cache, or has expired
+since it was set, the [get](docs/FileCache.md#get) method will return **null**.
+
+This behaviour is standard across all adapters.
+
+```php
+use Clvarley\Cache\FileCache;
+
+$cache = FileCache::create( 'path/to/cache/dir' );
+
+$value = $cache->get( 'key' );
+
+if ( $value === null ) {
+    // Cache miss, possibly time to rehydrate
+}
+```
+
+Unless you can guarantee for certain a cache item exists, it's always a good
+idea to check for **null** return values.
+
 ##### Configuration
 
 If you wish to change the way cache keys are hashed or values are serialized,
