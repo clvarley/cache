@@ -96,8 +96,8 @@ use Clvarley\Cache\FileCache;
 use Clvarley\Cache\Key\PosixGenerator;
 use Clvarley\Cache\Serialization\JsonSerializer;
 
-$generator = new PosixGenerator();
 $serializer = new JsonSerializer();
+$generator = new PosixGenerator();
 
 $cache = new FileCache( 'path/to/cache/dir', $serializer, $generator );
 ```
@@ -119,11 +119,15 @@ you to write your own adapters if required.
 
 #### Usage
 
+#### Documentation
+
 [Read more about the MemcachedCache](docs/MemcachedCache.md).
 
 ### Simple
 
 #### Usage
+
+#### Documentation
 
 [Read more about the SimpleCache](docs/SimpleCache.md).
 
@@ -133,8 +137,8 @@ you to write your own adapters if required.
 
 // TODO:
 
+#### Documentation
+
 [Read more about the VoidCache](docs/VoidCache.md).
 
-## References
-
-// TODO:
+## See Also
