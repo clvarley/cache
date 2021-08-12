@@ -1,46 +1,23 @@
 <?php
 
-namespace Clvarley\Cache\Tests;
+namespace Clvarley\Cache\Tests\Serialization;
 
+use Clvarley\Cache\Tests\Serialization\AbstractSerializerTest;
 use Clvarley\Cache\Serialization\IgbinarySerializer;
-use Clvarley\Cache\CacheItem;
-use PHPUnit\Framework\TestCase;
 use stdClass;
-
-use function time;
+use SplFixedArray;
 
 /**
  * @group Serialization
  * @requires extension igbinary
  */
-Class IgbinarySerializerTest Extends TestCase
+Class IgbinarySerializerTest Extends AbstractSerializerTest
 {
-
-    /**
-     * Time tests were started
-     *
-     * @var int $start_time Timestamp
-     */
-    private $start_time = 0;
-
-    /**
-     * Creates a new cache item with the given value
-     *
-     * @param mixed $value Cache value
-     * @return CacheItem   Cache item
-     */
-    private function createItem( /* mixed */ $value ) : CacheItem
-    {
-        $this->start_time = time();
-
-        $item = new CacheItem( $value, 1 );
-        return $item;
-    }
 
     /**
      * Make sure the IgbinarySerializer can serialize a string
      */
-    public function testSerializeString()
+    public function testCanSerializeString()
     {
         $item = $this->createItem( "testString" );
 
@@ -55,21 +32,21 @@ Class IgbinarySerializerTest Extends TestCase
     /**
      * Make sure the IgbinarySerializer can deserialize a string
      *
-     * @depends testSerializeString
+     * @depends testCanSerializeString
      */
-    public function testDeserializeString( string $serialized )
+    public function testCanDeserializeString( string $serialized )
     {
         $serializer = new IgbinarySerializer();
         $item = $serializer->deserialize( $serialized );
 
         $this->assertEquals(          $item->value,  "testString"  );
-        $this->assertEqualsWithDelta( $item->expires, $this->start_time, 1 );
+        $this->assertEqualsWithDelta( $item->expires, self::$start_time, 1 );
     }
 
     /**
      * Make sure the IgbinarySerializer can serialize an array
      */
-    public function testSerializeArray()
+    public function testCanSerializeArray()
     {
         $item = $this->createItem( [ 1, 2, 3 ] );
 
@@ -84,21 +61,21 @@ Class IgbinarySerializerTest Extends TestCase
     /**
      * Make sure the IgbinarySerializer can deserialize an array
      *
-     * @depends testSerializeArray
+     * @depends testCanSerializeArray
      */
-    public function testDeserializeArray( string $serialized )
+    public function testCanDeserializeArray( string $serialized )
     {
         $serializer = new IgbinarySerializer();
         $item = $serializer->deserialize( $serialized );
 
         $this->assertEquals(          $item->value,  [ 1, 2, 3 ]  );
-        $this->assertEqualsWithDelta( $item->expires, $this->start_time, 1 );
+        $this->assertEqualsWithDelta( $item->expires, self::$start_time, 1 );
     }
 
     /**
      * Make sure the IgbinarySerializer can serialize an object
      */
-    public function testSerializeObject()
+    public function testCanSerializeAnonymousClass()
     {
         $object = new stdClass;
         $object->id = 123;
@@ -117,9 +94,9 @@ Class IgbinarySerializerTest Extends TestCase
     /**
      * Make sure the IgbinarySerializer can deserialize an object
      *
-     * @depends testSerializeObject
+     * @depends testCanSerializeAnonymousClass
      */
-    public function testDeserializeObject( string $serialized )
+    public function testCanDeserializeAnonymousClass( string $serialized )
     {
         $serializer = new IgbinarySerializer();
         $item = $serializer->deserialize( $serialized );
@@ -127,6 +104,45 @@ Class IgbinarySerializerTest Extends TestCase
         $this->assertInstanceOf( stdClass::class, $item->value );
         $this->assertEquals( $item->value->id,   123 );
         $this->assertEquals( $item->value->prop, "test" );
-        $this->assertEqualsWithDelta( $item->expires, $this->start_time, 1 );
+        $this->assertEqualsWithDelta( $item->expires, self::$start_time, 1 );
     }
+
+
+    /**
+     * Make sure the IgbinarySerializer can serialize a known object
+     */
+    public function testCanSerializeKnownClass()
+    {
+        $vector = new SplFixedArray(2);
+        $vector[0] = 123;
+        $vector[1] = "test";
+
+        $item = $this->createItem( $vector );
+
+        $serializer = new IgbinarySerializer();
+        $serialized = $serializer->serialize( $item );
+
+        $this->assertEquals(
+            $serialized,
+            serialize( $item )
+        );
+
+        return $serialized;
+    }
+
+    /**
+     * Make sure the IgbinarySerializer can deserialize a known object
+     *
+     * @depends testCanSerializeKnownClass
+     */
+    public function testCanDeserializeKnownClass( string $serialized )
+    {
+        $serializer = new IgbinarySerializer();
+        $item = $serializer->deserialize( $serialized );
+
+        $this->assertInstanceOf( SplFixedArray::class, $item->value );
+        $this->assertEquals( $item->value[0], 123 );
+        $this->assertEquals( $item->value[1], "test" );
+        $this->assertEqualsWithDelta( $item->expires, self::$start_time, 1 );
+     }
 }

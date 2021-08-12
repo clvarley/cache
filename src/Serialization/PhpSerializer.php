@@ -10,7 +10,7 @@ use function serialize;
 use function unserialize;
 
 /**
- * Serializes cache items using normal PHP serialization
+ * Serializes cache items using the standard PHP serializer
  *
  * @package Cache
  * @author clvarley

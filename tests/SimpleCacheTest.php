@@ -2,7 +2,7 @@
 
 namespace Clvarley\Cache\Tests;
 
-use Clvarley\Cache\MemoryCache;
+use Clvarley\Cache\SimpleCache;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -11,7 +11,7 @@ use function sleep;
 /**
  * @group Caches
  */
-Class MemoryCacheTest Extends TestCase
+Class SimpleCacheTest Extends TestCase
 {
 
     /**
@@ -25,15 +25,15 @@ Class MemoryCacheTest Extends TestCase
      * Creates a new memory cache with the given lifetime
      *
      * @param int $lifetime Cache lifetime
-     * @return MemoryCache  Cache store
+     * @return SimpleCache  Cache store
      */
-    private function createCache( int $lifetime ) : MemoryCache
+    private function createCache( int $lifetime ) : SimpleCache
     {
         $this->test_obj = new stdClass;
         $this->test_obj->id = 123;
         $this->test_obj->prop = "test";
 
-        $cache = new MemoryCache();
+        $cache = new SimpleCache();
         $cache->set( "testObj",    $this->test_obj, $lifetime );
         $cache->set( "testString", "123",           $lifetime );
         $cache->set( "testInt",    123,             $lifetime );
@@ -45,9 +45,24 @@ Class MemoryCacheTest Extends TestCase
     /**
      * Make sure items can be read from the cache
      */
-    public function testValidItems()
+    public function testDoesReturnValidItems()
     {
         $lifetime = 1; // 1 second
+
+        $cache = $this->createCache( $lifetime );
+
+        $this->assertSame(   $cache->get( "testObj" ),    $this->test_obj );
+        $this->assertEquals( $cache->get( "testString" ), "123" );
+        $this->assertEquals( $cache->get( "testInt" ),    123 );
+        $this->assertEquals( $cache->get( "testArr" ),    [ 1, 2, 3 ] );
+    }
+
+    /**
+     * Make sure permanent cache items persist
+     */
+    public function testDoesReturnPermanentItems()
+    {
+        $lifetime = 0; // No expiry
 
         $cache = $this->createCache( $lifetime );
 
@@ -60,7 +75,7 @@ Class MemoryCacheTest Extends TestCase
     /**
      * Make sure items in the cache expire
      */
-    public function testExpiredItems()
+    public function testDoesNotReturnExpiredItems()
     {
         $lifetime = 1; // 1 second
 
@@ -72,20 +87,5 @@ Class MemoryCacheTest Extends TestCase
         $this->assertNull( $cache->get( "testString" ) );
         $this->assertNull( $cache->get( "testInt" ) );
         $this->assertNull( $cache->get( "testArr" ) );
-    }
-
-    /**
-     * Make sure permanent cache items persist
-     */
-    public function testPermanentItems()
-    {
-        $lifetime = 0; // No expiry
-
-        $cache = $this->createCache( $lifetime );
-
-        $this->assertSame(   $cache->get( "testObj" ),    $this->test_obj );
-        $this->assertEquals( $cache->get( "testString" ), "123" );
-        $this->assertEquals( $cache->get( "testInt" ),    123 );
-        $this->assertEquals( $cache->get( "testArr" ),    [ 1, 2, 3 ] );
     }
 }

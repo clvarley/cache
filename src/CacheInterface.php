@@ -3,7 +3,7 @@
 namespace Clvarley\Cache;
 
 /**
- * Interface for all common cache functionality
+ * Contract for all classes that can cache values
  *
  * @package Cache
  * @author clvarley
@@ -23,7 +23,8 @@ Interface CacheInterface
      * Store an item in the cache
      *
      * Cache lifetime in seconds. If not provided, the `$lifetime` parameter
-     * should default to a value sensible for the cache method being used.
+     * should default to a value sensible for the implementation/cache method
+     * being used.
      *
      * @param string $key   Item key
      * @param mixed $value  Item value

@@ -18,7 +18,7 @@ use function implode;
 use function explode;
 
 /**
- * File backed caching system
+ * Cache that persists items to the filesystem
  *
  * @package Cache
  * @author clvarley
@@ -46,6 +46,13 @@ Class FileCache Implements CacheInterface
      * @var KeyGeneratorInterface $generator Key generator
      */
     protected $generator;
+
+    /**
+     * Permission flags to use during calls to `mkdir`
+     *
+     * @var int $permissions Directory permissions
+     */
+    protected $permissions = 0755;
 
     /**
      * Create a file cache using the serialization and hashing methods provided
@@ -78,6 +85,16 @@ Class FileCache Implements CacheInterface
             new PhpSerializer,
             new Md5Generator
         );
+    }
+
+    /**
+     * Set the permission level to be used when creating directories
+     *
+     * @param int $permissions Directory permissions
+     */
+    public function setPermissions( int $permissions ) : void
+    {
+        $this->permissions = $permissions;
     }
 
     /**
@@ -131,7 +148,11 @@ Class FileCache Implements CacheInterface
         // Create sub-directories (if required)
         if ( !empty( $parts ) ) {
             $path = implode( '/', $parts );
-            $directory = $this->directory->create( $path, 0755, true );
+            $directory = $this->directory->create(
+                $path,
+                $this->permissions,
+                true
+            );
         } else {
             $directory = $this->directory;
         }
@@ -150,7 +171,7 @@ Class FileCache Implements CacheInterface
     }
 
     /**
-     * Splits the key into an array of hashed sub parts
+     * Splits the key into an array of hashes
      *
      * @param string $key Item key
      * @return string[]   Hashed parts

@@ -7,7 +7,7 @@ use Clvarley\Cache\KeyGeneratorInterface;
 use preg_replace;
 
 /**
- * Makes keys safe according to the POSIX portable filename standard
+ * Generator that guarantees POSIX portable file name compliant keys
  *
  * @package Cache
  * @author clvarley
@@ -23,6 +23,6 @@ Class PosixGenerator Implements KeyGeneratorInterface
      */
     public function generate( string $subject ) : string
     {
-        return preg_replace( '/[A-Za-z0-9_\-\.]/', '', $subject );
+        return preg_replace( '/[^A-Za-z0-9_\-\.]/', '', $subject );
     }
 }

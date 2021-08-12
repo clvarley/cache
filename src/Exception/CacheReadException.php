@@ -10,7 +10,7 @@ use RuntimeException;
  * @package Cache
  * @author clvarley
  */
-Final Class CacheReadException Extends RuntimeException
+Class CacheReadException Extends RuntimeException
 {
     // TODO:
 }

@@ -14,7 +14,7 @@ use const JSON_FORCE_OBJECT;
 use const JSON_PRESERVE_ZERO_FRACTION;
 
 /**
- * Serializes cache items into JSON
+ * Serializes cache items into JSON strings
  *
  * @package Cache
  * @author clvarley
@@ -27,10 +27,10 @@ Class JsonSerializer Implements SerializerInterface
      *
      * @var int $encoding Encoding options
      */
-    private $encoding = JSON_FORCE_OBJECT | JSON_PRESERVE_ZERO_FRACTION;
+    private $encoding = JSON_PRESERVE_ZERO_FRACTION;
 
     /**
-     * Set the JSON encoding options flags
+     * Set the JSON encoding option flags
      *
      * @param int $encoding Encoding options
      * @return void         N/a
@@ -69,14 +69,16 @@ Class JsonSerializer Implements SerializerInterface
         // Missing required data
         if (
             !isset( $deserialized->value )
-            || !isset( $deserialized->lifetime )
-            || !is_int( $deserialized->lifetime )
+            || !isset( $deserialized->expires )
+            || !is_int( $deserialized->expires )
         ) {
             throw new DeserializationException;
         }
 
         // TODO: Object deserialization
+        $item = new CacheItem( $deserialized->value, 0 );
+        $item->expires = $deserialized->expires;
 
-        return new CacheItem( $deserialized->value, $deserialized->lifetime );
+        return $item;
     }
 }

@@ -44,7 +44,20 @@ Class Directory
     }
 
     /**
-     * Attempt to create this (or a given child) directory
+     * Check to see if this (or a named child) directory exists
+     *
+     * @param string $directory Directory path
+     * @return bool             Directory exists?
+     */
+    public function exists( string $directory = '' ) : bool
+    {
+        $path = rtrim( "$this->path/$directory", '\\/' );
+
+        return is_dir( $path );
+    }
+
+    /**
+     * Attempt to create this (or a named child) directory
      *
      * @param string $directory (Optional) Directory path
      * @param int $mode         (Optional) Directory permissions
@@ -67,20 +80,7 @@ Class Directory
     }
 
     /**
-     * Check to see if this (or a given child) directory exists
-     *
-     * @param string $directory Directory path
-     * @return bool             Directory exists?
-     */
-    public function exists( string $directory = '' ) : bool
-    {
-        $path = rtrim( "$this->path/$directory", '\\/' );
-
-        return is_dir( $path );
-    }
-
-    /**
-     * Attempt to delete this (or a given child) directory
+     * Attempt to delete this (or a named child) directory
      *
      * @param string $directory Directory path
      * @return bool             Directory deleted?

@@ -17,7 +17,7 @@ Class CacheItemTest Extends TestCase
     /**
      * Make sure the constructor correctly sets properties
      */
-    public function testConstructor()
+    public function testConstructorSetsProperties()
     {
         $cache_item = new CacheItem( "Test", 10 );
 
@@ -30,7 +30,7 @@ Class CacheItemTest Extends TestCase
     /**
      * Make sure isValid returns true for live items
      */
-    public function testValidItem()
+    public function testLiveItemsAreConsideredValid()
     {
         $cache_item = new CacheItem( "Test", 1 );
 
@@ -40,7 +40,7 @@ Class CacheItemTest Extends TestCase
     /**
      * Make sure isValid returns false for expired items
      */
-    public function testInvalidItem()
+    public function testDeadItemsAreConsideredInvalid()
     {
         $cache_item = new CacheItem( "Test", 1 );
 
@@ -52,7 +52,7 @@ Class CacheItemTest Extends TestCase
     /**
      * Make sure items with no expiry time are considered permanent
      */
-    public function testEmptyExpiry()
+    public function testItemsWithNoLifetimeNeverExpire()
     {
         $cache_item = new CacheItem( "Test", 0 );
 
@@ -64,9 +64,9 @@ Class CacheItemTest Extends TestCase
     /**
      * Make sure permanent cache items are considered valid
      *
-     * @depends testEmptyExpiry
+     * @depends testItemsWithNoLifetimeNeverExpire
      */
-    public function testPermanentLifetime( CacheItem $item )
+    public function testItemsWithNoLifetimeAreAlwaysValid( CacheItem $item )
     {
         $this->assertTrue( $item->isValid() );
     }

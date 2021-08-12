@@ -16,7 +16,7 @@ Class VoidCacheTest Extends TestCase
     /**
      * Make sure valid cache items DON'T return
      */
-    public function testValidItem()
+    public function testDoesNotReturnValidItems()
     {
         $cache = new VoidCache();
         $cache->set( "valid", 123, 10 );
@@ -27,9 +27,20 @@ Class VoidCacheTest Extends TestCase
     }
 
     /**
+     * Make sure permanent cache items DON'T return
+     */
+    public function testDoesNotReturnPermanentItems()
+    {
+        $cache = new VoidCache();
+        $cache->set( "infinite", 123, 0 );
+
+        $this->assertNull( $cache->get( "infinite" ) );
+    }
+
+    /**
      * Make sure expired cache items DON'T return
      */
-    public function testExpiredItem()
+    public function testDoesNotReturnExpiredItems()
     {
         $cache = new VoidCache();
         $cache->set( "expired", 123, 1 );
@@ -37,16 +48,5 @@ Class VoidCacheTest Extends TestCase
         sleep( 1 ); // Force expiry
 
         $this->assertNull( $cache->get( "expired" ) );
-    }
-
-    /**
-     * Make sure permanent cache items DON'T return
-     */
-    public function testPermanentItem()
-    {
-        $cache = new VoidCache();
-        $cache->set( "infinite", 123, 0 );
-
-        $this->assertNull( $cache->get( "infinite" ) );
     }
 }

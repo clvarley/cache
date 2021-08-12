@@ -1,17 +1,12 @@
 language: php
 php:
-  - 7.1
-  - 7.4
+  - 7.3
   - 8.0
-  - nightly
 branches:
   only:
     - main
-    - /^release\/.*$/
 install:
   - composer install --ignore-platform-reqs
-before_script:
-  - php vendor/vimeo/psalm/psalm --clear-cache=true
 script:
   - php vendor/bin/psalm
   - php vendor/bin/phpunit ./tests

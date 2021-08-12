@@ -7,7 +7,7 @@ use Clvarley\Cache\KeyGeneratorInterface;
 use function md5;
 
 /**
- * MD5 based key generator
+ * Generator that hashes keys using the Crc32 algorithm
  *
  * @package Cache
  * @author clvarley
@@ -16,7 +16,7 @@ Class Md5Generator Implements KeyGeneratorInterface
 {
 
     /**
-     * Creates a key using the MD5 algorithm
+     * Create a key using the Md5 algorithm
      *
      * @param string $subject Subject string
      * @return string         MD5 key

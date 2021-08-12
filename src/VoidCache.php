@@ -5,7 +5,7 @@ namespace Clvarley\Cache;
 use Clvarley\Cache\CacheInterface;
 
 /**
- * A no-op cache that throws values into the void.
+ * Cache that never stores items, simply discarding them
  *
  * Useful for refactoring or for testing.
  *
