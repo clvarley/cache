@@ -28,5 +28,6 @@ spl_autoload_register( function ( string $classname ) : void {
     $classfile = strtr( $classfile, '\\', DIRECTORY_SEPARATOR );
     $classfile = __DIR__ . "/$classfile.php";
 
+    /** @psalm-suppress UnresolvableInclude */
     require_once $classfile;
 });
