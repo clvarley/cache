@@ -12,6 +12,7 @@ A very simple collection of cache utilities.
 - [About](#about)
   - [Overview](#overview)
   - [Installation](#installation)
+  - [Contributions](#contributors)
 - [Cache Types](#cache-types)
   - [File](#file)
     - [Usage](#usage)
