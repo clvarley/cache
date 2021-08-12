@@ -25,6 +25,11 @@ cache medium and configurations, as well as several helper methods to make
 working with some of the more common cache types as straightforward and less
 finicky as possible.
 
+For developers working with frameworks that offer dependency injection, all
+cache adapters adhere to a shared [CacheInterface](docs/CacheInterface.md)
+contract, allowing you to build (and type hint) against the abstract interface
+instead of the concrete implementation.
+
 The adapters currently available are:
 
 * [FileCache](docs/FileCache.md)
