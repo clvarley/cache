@@ -286,7 +286,7 @@ while refactoring.
 
 Think of it as an equivalent to `/dev/null`.
 
-#### Usage
+#### Usage
 
 The void cache is used like so:
 
