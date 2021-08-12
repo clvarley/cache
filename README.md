@@ -131,7 +131,7 @@ $cache = new FileCache( 'path/to/cache/dir', $serializer, $generator );
 ```
 
 The above will write cache files with [POSIX safe](docs/Key/PosixGenerator.md)
-filenames and encode the cache as JSON.
+filenames and encode the values as JSON.
 
 Any classes implementing the appropriate [key generator](docs/KeyGeneratorInterface.md)
 and [serializer](docs/SerializerInterface.md) interfaces can be passed, allowing
