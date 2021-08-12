@@ -80,8 +80,8 @@ just want to include the library directly, you can do so by downloading this
 repo and including the provided `autoload.php` file:
 
 ```php
-//
-require_once 'src/autoload.php';
+// Replace '...' with correct path
+require_once '.../src/autoload.php';
 ```
 
 All of the `Clvarley\Cache\*` classes should now be loaded automatically.
