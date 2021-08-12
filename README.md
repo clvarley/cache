@@ -29,7 +29,6 @@ A very simple collection of cache utilities.
   - [Void](#void)
     - [Usage](#usage-3)
     - [Documentation](#documentation-3)
-- [See Also](#see-also)
 
 ## Requirements
 
@@ -219,5 +218,3 @@ you to write your own adapters if required.
 #### Documentation
 
 [Read more about the VoidCache](docs/VoidCache.md).
-
-## See Also
