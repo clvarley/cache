@@ -6,12 +6,37 @@
 
 A very simple collection of cache utilities.
 
+## Contents
+
+- [Requirements](#requirements)
+- [About](#about)
+  - [Overview](#overview)
+  - [Installation](#installation)
+- [Cache Types](#cache-types)
+  - [File](#file)
+    - [Usage](#usage)
+      - [Basic Setup](#basic-setup)
+      - [Expired Items](#expired-items)
+      - [Configuration](#configuration)
+    - [Documentation](#documentation)
+  - [Memcached](#memcached)
+    - [Usage](#usage-1)
+    - [Documentation](#documentation-1)
+  - [Simple](#simple)
+    - [Usage](#usage-2)
+    - [Documentation](#documentation-2)
+  - [Void](#void)
+    - [Usage](#usage-3)
+    - [Documentation](#documentation-3)
+- [See Also](#see-also)
+
 ## Requirements
 
 * PHP >= 7.3
 * Composer
 
 ## About
+### Overview
 
 When writing large applications for the web, it can often be useful to cache
 computationally expensive data to increase performance and reduce calls to
@@ -40,6 +65,31 @@ The adapters currently available are:
 I'm always looking to add more adapters to the library, so if you have a
 different use case (or can think of a caching solution I should support), feel
 free to send me a suggestion for consideration in future releases.
+
+### Installation
+
+For those of you using Composer, the library can be added to your project by
+running the following command:
+
+```sh
+composer require clvarley/cache
+```
+
+If you don't want to use Composer (and all the benefits it brings), or if you
+just want to include the library directly, you can do so by downloading this
+repo and including the provided `autoload.php` file:
+
+```php
+//
+require_once 'src/autoload.php';
+```
+
+All of the `Clvarley\Cache\*` classes should now be loaded automatically.
+
+### Contributions
+
+While in the future I'd like to open the project to contributors, at the current
+time I won't be accepting pull requests.
 
 ## Cache Types
 ### File
