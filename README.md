@@ -13,35 +13,123 @@ A very simple collection of cache utilities.
 
 ## About
 
-// TODO:
+When writing large applications for the web, it can often be useful to cache
+computationally expensive data to increase performance and reduce calls to
+potentially slow storage devices (API requests, databases, filesystem etc...).
 
-## Usage
+This library is a collection of simple utilities that tries to make serializing
+and caching data in PHP as painless as possible.
 
-// TODO:
+To this end, the library provides a range of adapters to work with a variety of
+cache medium and configurations, as well as several helper methods to make
+working with some of the more common cache types as straightforward and less
+finicky as possible.
+
+The adapters currently available are:
+
+* [FileCache](docs/FileCache.md)
+* [MemcachedCache](docs/MemcachedCache.md)
+* [SimpleCache](docs/SimpleCache.md)
+* [VoidCache](docs/VoidCache.md)
+
+I'm always looking to add more adapters to the library, so if you have a
+different use case (or can think of a caching solution I should support), feel
+free to send me a suggestion for consideration in future releases.
 
 ## Cache Types
 ### File
 
-// TODO:
+One of the most basic forms of caches there are. The FileCache adapter writes
+all cache values to the underlying filesystem, providing a persistent medium
+that is available to all requests.
 
-[Read more about FileCache](docs/FileCache.md).
+To allow greater configuration, the FileCache can be configured to use the
+[serialization](docs/SerializerInterface.md) and [key generation](docs/KeyGeneratorInterface.md)
+methods of your choosing. See the documentation for the [constructor](docs/FileCache.md#__construct)
+for more information. In most cases however, the default values should suffice.
+
+#### Usage
+##### Basic Setup
+
+To get started with a basic cache in place, we provide the [create](docs/FileCache.md#create)
+utility method.
+
+This will return an adapter where the cache keys are [md5](docs/Key/Md5Generator.md)
+hashed and serialized using the internal [PHP serializer](docs/Serialization/PhpSerializer.md).
+
+```php
+use Clvarley\Cache\FileCache;
+
+$cache = FileCache::create( 'path/to/cache/dir' );
+$cache->set( 'test', 'Data to be cached!' );
+```
+
+This creates a new cache (rooted in the `path/to/cache/dir` directory) and sets
+a value with the key `test`. By default, the FileCache is set to persist items
+for 60 seconds, but this can be controlled with the `$lifetime` parameter:
+
+```php
+use Clvarley\Cache\FileCache;
+
+$cache = FileCache::create( 'path/to/cache/dir' );
+
+$cache->set( 'short',   'My short lived value!',     10 );
+$cache->set( 'long',    'My long lived value!',      120 );
+$cache->set( 'forever', 'This should last forever!', 0 );
+```
+
+In the above example, we cache the values for 10 seconds, 120 seconds and - by
+specifying a lifetime of 0 - forever respectively.
+
+##### Configuration
+
+If you wish to change the way cache keys are hashed or values are serialized,
+you can specify the methods via the [constructor](docs/FileCache.md#__construct).
+
+```php
+use Clvarley\Cache\FileCache;
+use Clvarley\Cache\Key\PosixGenerator;
+use Clvarley\Cache\Serialization\JsonSerializer;
+
+$generator = new PosixGenerator();
+$serializer = new JsonSerializer();
+
+$cache = new FileCache( 'path/to/cache/dir', $serializer, $generator );
+```
+
+The above will write cache files with [POSIX safe](docs/Key/PosixGenerator.md)
+filenames and encode the cache as JSON.
+
+Any classes implementing the appropriate [key generator](docs/KeyGeneratorInterface.md)
+and [serializer](docs/SerializerInterface.md) interfaces can be passed, allowing
+you to write your own adapters if required.
+
+#### Documentation
+
+[Read more about the FileCache](docs/FileCache.md).
 
 ### Memcached
 
 // TODO:
 
-[Read more about MemcachedCache](docs/MemcachedCache.md).
+#### Usage
 
-### Memory
+[Read more about the MemcachedCache](docs/MemcachedCache.md).
 
-// TODO:
+### Simple
 
-[Read more about MemoryCache](docs/MemoryCache.md).
+#### Usage
+
+[Read more about the SimpleCache](docs/SimpleCache.md).
 
 ### Void
 
+#### Usage
+
 // TODO:
 
-[Read more about VoidCache](docs/VoidCache.md).
+[Read more about the VoidCache](docs/VoidCache.md).
 
 ## References
+
+// TODO:
