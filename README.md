@@ -193,9 +193,47 @@ you to write your own adapters if required.
 
 ### Memcached
 
-// TODO:
+A cache adapter that makes use of the [Memcached](https://www.php.net/manual/en/book.memcached)
+extension as its storage system. Allows you to store values in one (or many)
+Memcached servers, be they running locally or across a network.
+
+Requires the [Memcached](https://www.php.net/manual/en/memcached.installation.php)
+PHP extension to function.
 
 #### Usage
+
+There are two ways to create this cache adapter. You can either call the
+[constructor](docs/MemcachedCache.md#__construct) yourself, passing in a raw
+Memcached instance, or you can call the [create](docs/MemcachedCache.md#create)
+static method.
+
+```php
+use Clvarley\Cache\MemcachedCache;
+
+// Perform any setup
+$memcached = new \Memcached();
+$memcached->addServer( '127.0.0.1', 11211 );
+
+// ...
+
+// Wrap the instance
+$cache = new MemcachedCache( $memcached );
+$cache->get( 'test' );
+```
+
+When using the [create](docs/MemcachedCache.md#create) utility you can skip the
+intermediary step and setup the Memcached instance directly.
+
+```php
+use Clvarley\Cache\MemcachedCache;
+
+// Create in place
+$cache = MemcachedCache::create( '127.0.0.1', 11211 );
+$cache->get( 'test' );
+```
+
+However, it is worth noting that this approach means you cannot configure the
+underlying Memcached instance before starting.
 
 #### Documentation
 
@@ -203,7 +241,23 @@ you to write your own adapters if required.
 
 ### Simple
 
+The most basic of caches, simply holding the item in local memory.
+
+**NOTE:** Because this cache holds everything in process memory, any cache items
+will NOT be persisted between requests.
+
 #### Usage
+
+Being a relatively straightforward cache, creating an instance of this adapter
+requires no setup.
+
+```php
+use Clvarley\Cache\SimpleCache;
+
+$cache = new SimpleCache();
+$cache->set( 'test', 'Stored in memory!' );
+```
+
 
 #### Documentation
 
@@ -211,9 +265,28 @@ you to write your own adapters if required.
 
 ### Void
 
+A cache adapter with very bad memory. Any items saved to this cache are silently
+discarded.
+
+While this might sound useless, it can sometimes be helpful to test against an
+implementation that will always return **null** or to swap out the cache method
+while refactoring.
+
+Think of it as an equivalent to `/dev/null`.
+
 #### Usage
 
-// TODO:
+The void cache is used like so:
+
+```php
+use Clvarley\Cache\VoidCache;
+
+$cache = new VoidCache();
+$cache->set( 'test', 'Adios!' );
+
+// Where did my value go?
+$cache->get( 'test' ); // null
+```
 
 #### Documentation
 
