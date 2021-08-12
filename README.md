@@ -67,6 +67,12 @@ use Clvarley\Cache\FileCache;
 
 $cache = FileCache::create( 'path/to/cache/dir' );
 $cache->set( 'test', 'Data to be cached!' );
+
+// ...
+
+$value = $cache->get( 'test' );
+
+echo $value; // Data to be cached!
 ```
 
 This creates a new cache (rooted in the `path/to/cache/dir` directory) and sets
