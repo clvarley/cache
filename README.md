@@ -48,7 +48,7 @@ This library is a collection of simple utilities that tries to make serializing
 and caching data in PHP as painless as possible.
 
 To this end, the library provides a range of adapters to work with a variety of
-cache medium and configurations, as well as several helper methods to make
+cache mediums and configurations, as well as several helper methods to make
 working with some of the more common cache types as straightforward and less
 finicky as possible.
 
