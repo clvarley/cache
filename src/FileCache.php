@@ -152,19 +152,15 @@ Class FileCache Implements CacheInterface
             $cache_dir = '';
         }
 
-        $directory = $this->directory;
-
-        // Create if required
-        if ( !$directory->exists( $cache_dir ) ) {
-            $directory = $directory->create(
-                $cache_dir,
-                $this->permissions,
-                true
-            );
-        }
+        // Move into (only creates if required)
+        $directory = $this->directory->create(
+            $cache_dir,
+            $this->permissions,
+            true
+        );
 
         // Failed to create directory
-        if ( $directory === null ) {
+        if ( $directory === null || !$directory->exists() ) {
             throw new CacheWriteException;
         }
 
