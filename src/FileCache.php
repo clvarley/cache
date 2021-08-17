@@ -107,7 +107,7 @@ Class FileCache Implements CacheInterface
         $parts = $this->splitKey( $key );
 
         $filepath = implode( '/', $parts );
-        $filepath = "$root/$filepath.bin";
+        $filepath = "$root/$filepath.txt";
 
         $cache_file = new File( $filepath );
 
@@ -170,7 +170,7 @@ Class FileCache Implements CacheInterface
 
         $root = $directory->getPath();
 
-        $cache_file = new File( "$root/$filename.bin" );
+        $cache_file = new File( "$root/$filename.txt" );
         $cache_file->write( $content );
 
         return;
