@@ -145,16 +145,22 @@ Class FileCache Implements CacheInterface
         $parts = $this->splitKey( $key );
         $filename = array_pop( $parts );
 
-        // Create sub-directories (if required)
+        // Sub-directory specified?
         if ( !empty( $parts ) ) {
-            $path = implode( '/', $parts );
-            $directory = $this->directory->create(
-                $path,
+            $cache_dir = implode( '/', $parts );
+        } else {
+            $cache_dir = '';
+        }
+
+        $directory = $this->directory;
+
+        // Create if required
+        if ( !$directory->exists( $cache_dir ) ) {
+            $directory = $directory->create(
+                $cache_dir,
                 $this->permissions,
                 true
             );
-        } else {
-            $directory = $this->directory;
         }
 
         // Failed to create directory
