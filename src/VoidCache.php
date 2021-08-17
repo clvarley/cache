@@ -18,7 +18,7 @@ Class VoidCache Implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function get( string $key ) /* : ?mixed */
+    public function get( string $key ) /* : mixed */
     {
         return null;
     }
