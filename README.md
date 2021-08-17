@@ -278,8 +278,9 @@ $cache->set( 'test', 'Stored in memory!' );
 
 ### Void
 
-A cache adapter with very bad memory. Any items saved to this cache are silently
-discarded.
+A cache adapter with very bad memory.
+
+Any items saved to this cache are silently discarded.
 
 While this might sound useless, it can sometimes be helpful to test against an
 implementation that will always return **null** or to swap out the cache method

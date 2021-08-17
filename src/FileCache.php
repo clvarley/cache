@@ -100,14 +100,14 @@ Class FileCache Implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function get( string $key ) /* : ?mixed */
+    public function get( string $key ) /* : mixed */
     {
         $root = $this->directory->getPath();
 
         $parts = $this->splitKey( $key );
 
         $filepath = implode( '/', $parts );
-        $filepath = "$root/$filepath.bin";
+        $filepath = "$root/$filepath.txt";
 
         $cache_file = new File( $filepath );
 
@@ -145,26 +145,28 @@ Class FileCache Implements CacheInterface
         $parts = $this->splitKey( $key );
         $filename = array_pop( $parts );
 
-        // Create sub-directories (if required)
+        // Sub-directory specified?
         if ( !empty( $parts ) ) {
-            $path = implode( '/', $parts );
-            $directory = $this->directory->create(
-                $path,
-                $this->permissions,
-                true
-            );
+            $cache_dir = implode( '/', $parts );
         } else {
-            $directory = $this->directory;
+            $cache_dir = '';
         }
 
+        // Move into (only creates if required)
+        $directory = $this->directory->create(
+            $cache_dir,
+            $this->permissions,
+            true
+        );
+
         // Failed to create directory
-        if ( $directory === null ) {
+        if ( $directory === null || !$directory->exists() ) {
             throw new CacheWriteException;
         }
 
         $root = $directory->getPath();
 
-        $cache_file = new File( "$root/$filename.bin" );
+        $cache_file = new File( "$root/$filename.txt" );
         $cache_file->write( $content );
 
         return;

@@ -17,7 +17,7 @@ Interface CacheInterface
      * @param string $key Item key
      * @return mixed|null Item value (or null)
      */
-    public function get( string $key ) /* : ?mixed */;
+    public function get( string $key ) /* : mixed */;
 
     /**
      * Store an item in the cache
