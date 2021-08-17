@@ -100,7 +100,7 @@ Class FileCache Implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function get( string $key ) /* : ?mixed */
+    public function get( string $key ) /* : mixed */
     {
         $root = $this->directory->getPath();
 

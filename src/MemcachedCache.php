@@ -76,7 +76,7 @@ Class MemcachedCache Implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function get( string $key ) /* : ?mixed */
+    public function get( string $key ) /* : mixed */
     {
         /** @var mixed|false $result */
         $result = $this->memcached->get( $key );

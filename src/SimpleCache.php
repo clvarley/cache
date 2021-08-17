@@ -26,7 +26,7 @@ Class SimpleCache Implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function get( string $key ) /* : ?mixed */
+    public function get( string $key ) /* : mixed */
     {
         if ( isset( $this->items[$key] ) ) {
             if ( $this->items[$key]->isValid() ) {
