@@ -33,7 +33,7 @@ Class FileCacheTest Extends AbstractFilesystemTest
         $this->test_obj->id = 123;
         $this->test_obj->prop = "test";
 
-        $cache = new FileCache();
+        $cache = FileCache::create( static::$test_directory );
 
         $cache->set( "testObj",    $this->test_obj, $lifetime );
         $cache->set( "testString", "123",           $lifetime );
@@ -52,7 +52,12 @@ Class FileCacheTest Extends AbstractFilesystemTest
 
         $cache = $this->createCache( $lifetime );
 
-        $this->assertSame(   $cache->get( "testObj" ),    $this->test_obj );
+        // File cache will return like-for-like but NOT the the same ref
+        $test_obj = $cache->get( "testObj" );
+
+        $this->assertEquals( $test_obj->id,   $this->test_obj->id );
+        $this->assertEquals( $test_obj->prop, $this->test_obj->prop );
+
         $this->assertEquals( $cache->get( "testString" ), "123" );
         $this->assertEquals( $cache->get( "testInt" ),    123 );
         $this->assertEquals( $cache->get( "testArr" ),    [ 1, 2, 3 ] );
@@ -67,7 +72,12 @@ Class FileCacheTest Extends AbstractFilesystemTest
 
         $cache = $this->createCache( $lifetime );
 
-        $this->assertSame(   $cache->get( "testObj" ),    $this->test_obj );
+        // File cache will return like-for-like but NOT the the same ref
+        $test_obj = $cache->get( "testObj" );
+
+        $this->assertEquals( $test_obj->id,   $this->test_obj->id );
+        $this->assertEquals( $test_obj->prop, $this->test_obj->prop );
+
         $this->assertEquals( $cache->get( "testString" ), "123" );
         $this->assertEquals( $cache->get( "testInt" ),    123 );
         $this->assertEquals( $cache->get( "testArr" ),    [ 1, 2, 3 ] );
