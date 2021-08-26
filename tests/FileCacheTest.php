@@ -60,7 +60,7 @@ Class FileCacheTest Extends AbstractFilesystemTest
 
         // Give the tests access to the private properties
         $tests = Closure::bind(
-            function ( FileCache $cache ) use (&$serializer, &$generator) {
+            function ( FileCache $cache ) use ( $serializer, $generator ) {
                 $this->assertInstanceOf( Directory::class, $cache->directory );
                 $this->assertEquals( $cache->directory->getPath(), '/test/dir' );
                 $this->assertSame( $cache->serializer, $serializer );
@@ -69,24 +69,31 @@ Class FileCacheTest Extends AbstractFilesystemTest
             $this,
             FileCache::class
         );
-
         $tests( $cache );
     }
 
     /**
-     *
+     * Make sure the `::create` utility method works
      */
     public function testCanCreateUsingUtilityMethod()
     {
-        // TODO
-    }
+        $cache = FileCache::create( '/test/dir' );
 
-    /**
-     *
-     */
-    public function testCanWriteToFiles()
-    {
-        // TODO:
+        $this->assertInstanceOf( FileCache::class, $cache );
+
+        // Give the tests access to the private properties
+        $tests = Closure::bind(
+            function ( FileCache $cache ) {
+                $this->assertInstanceOf( Directory::class, $cache->directory );
+                $this->assertEquals( $cache->directory->getPath(), '/test/dir' );
+                $this->assertInstanceOf( PhpSerializer::class, $cache->serializer );
+                $this->assertInstanceOf( Md5Generator::class, $cache->generator );
+            },
+            $this,
+            FileCache::class
+        );
+
+        $tests( $cache );
     }
 
     /**
