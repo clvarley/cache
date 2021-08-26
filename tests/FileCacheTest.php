@@ -4,7 +4,11 @@ namespace Clvarley\Cache\Tests;
 
 use Clvarley\Cache\Tests\Filesystem\AbstractFilesystemTest;
 use Clvarley\Cache\FileCache;
+use Clvarley\Cache\Serialization\PhpSerializer;
+use Clvarley\Cache\Key\Md5Generator;
+use Clvarley\Cache\Filesystem\Directory;
 use stdClass;
+use Closure;
 
 use function sleep;
 
@@ -41,6 +45,48 @@ Class FileCacheTest Extends AbstractFilesystemTest
         $cache->set( "testArr",    [ 1, 2, 3 ],     $lifetime );
 
         return $cache;
+    }
+
+    /**
+     * Make sure the constructor correctly sets properties
+     */
+    public function testConstructorSetsProperties()
+    {
+        $serializer = new PhpSerializer();
+        $generator = new Md5Generator();
+
+        // Use the constructor
+        $cache = new FileCache( '/test/dir', $serializer, $generator );
+
+        // Give the tests access to the private properties
+        $tests = Closure::bind(
+            function ( FileCache $cache ) use (&$serializer, &$generator) {
+                $this->assertInstanceOf( Directory::class, $cache->directory );
+                $this->assertEquals( $cache->directory->getPath(), '/test/dir' );
+                $this->assertSame( $cache->serializer, $serializer );
+                $this->assertSame( $cache->generator,  $generator );
+            },
+            $this,
+            FileCache::class
+        );
+
+        $tests( $cache );
+    }
+
+    /**
+     *
+     */
+    public function testCanCreateUsingUtilityMethod()
+    {
+        // TODO
+    }
+
+    /**
+     *
+     */
+    public function testCanWriteToFiles()
+    {
+        // TODO:
     }
 
     /**
