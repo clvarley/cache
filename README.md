@@ -138,6 +138,16 @@ $value = $cache->get( 'test' );
 echo $value; // Data to be cached!
 ```
 
+Cache values can be of almost any type, not just strings. You can cache strings,
+ints, floats, arrays and objects. (Caveat: the only exceptions are resource
+types as they cannot be serialized)
+
+```php
+$cache->set( 'test.float',  3.14 );
+$cache->set( 'test.array',  [ 1, 2, 3 ] );
+$cache->set( 'test.object', new stdClass );
+```
+
 This creates a new cache (rooted in the `path/to/cache/dir` directory) and sets
 a value with the key `test`. By default, the FileCache is set to persist items
 for 60 seconds, but this can be controlled with the `$lifetime` parameter:
