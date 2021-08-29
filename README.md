@@ -1,6 +1,6 @@
 # Simple Cache
 
-[![Release](https://img.shields.io/badge/release-v1.0.0-blue)](https://github.com/clvarley/cache/tags)
+[![Release](https://img.shields.io/badge/release-v1.0.2-blue)](https://github.com/clvarley/cache/tags)
 [![PHP Version](https://img.shields.io/badge/php-^7.3-blue)](https://www.php.net/supported-versions)
 [![Composer Version](https://img.shields.io/badge/composer-2-blue)](https://getcomposer.org/doc/00-intro.md)
 [![Build Status](https://travis-ci.com/clvarley/cache.svg?branch=main)](https://travis-ci.com/clvarley/cache)
@@ -139,8 +139,20 @@ echo $value; // Data to be cached!
 ```
 
 This creates a new cache (rooted in the `path/to/cache/dir` directory) and sets
-a value with the key `test`. By default, the FileCache is set to persist items
-for 60 seconds, but this can be controlled with the `$lifetime` parameter:
+a value with the key `test`.
+
+Cache values can be of almost any type, not just strings. You can cache strings,
+ints, floats, arrays and objects. (Caveat: the only exceptions are resource
+types as they cannot be serialized)
+
+```php
+$cache->set( 'test.float',  3.14 );
+$cache->set( 'test.array',  [ 1, 2, 3 ] );
+$cache->set( 'test.object', new stdClass );
+```
+
+By default, the FileCache is set to persist items for 60 seconds, but this can
+be controlled with the `$lifetime` parameter:
 
 ```php
 use Clvarley\Cache\FileCache;
