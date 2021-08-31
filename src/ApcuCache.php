@@ -3,6 +3,7 @@
 namespace Clvarley\Cache;
 
 use Clvarley\Cache\CacheInterface;
+use Clvarley\Cache\Exception\CacheWriteException;
 
 use function apcu_fetch;
 use function apcu_store;
@@ -22,9 +23,15 @@ Class ApcuCache Implements CacheInterface
      */
     public function get( string $key ) // : mixed
     {
-        // TODO:
+        /** @var mixed $value */
+        $value = apcu_fetch( $key, $success );
 
-        return null;
+        // Standardise our null return contract
+        if ( $success === false && $value === false ) {
+            $value = null;
+        }
+
+        return $value;
     }
 
     /**
@@ -32,7 +39,12 @@ Class ApcuCache Implements CacheInterface
      */
     public function set( string $key, /* mixed */ $value, int $lifetime = 0 ) : void
     {
-        // TODO:
+        $success = apcu_store( $key, $value, $lifetime );
+
+        // Failed to cache value
+        if ( $success === false ) {
+            throw new CacheWriteException;
+        }
 
         return;
     }
