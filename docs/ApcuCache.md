@@ -1,14 +1,12 @@
-# VoidCache
+# MemcachedCache
 
-Available since version 1.0.0
+Available since version 1.1.0
+
+Requires the [APCu PHP extension](https://www.php.net/manual/en/book.apcu).
 
 ## About
 
-Cache that never stores items, simply discarding them.
-
-Useful when refactoring or testing. Allows you to type hint against the
-[CacheInterface](CacheInterface.md) contract, but with a cache that is
-guaranteed to never store items.
+Cache that acts as a wrapper around the APCu extension.
 
 Implements the [CacheInterface](CacheInterface.md).
 
@@ -17,7 +15,7 @@ Implements the [CacheInterface](CacheInterface.md).
 ```php
 namespace Clvarley\Cache;
 
-Class VoidCache Implements CacheInterface
+Class ApcuCache Implements CacheInterface
 {
 
     /* Methods */
@@ -29,7 +27,7 @@ Class VoidCache Implements CacheInterface
 ## Methods
 ### *get*
 
-Does nothing.
+Retrieve an item from the cache.
 
 ```php
 public function get( string $key ) : mixed;
@@ -39,16 +37,17 @@ public function get( string $key ) : mixed;
 
 <dl>
   <dt>key</dt>
-  <dd>Item key.</dd>
+  <dd>Item key</dd>
 </dl>
 
 #### Return Value
 
-Will always return **null**.
+Returns the item value or **null** if the given key doesn't exist (or is
+expired).
 
 ### *set*
 
-Does nothing.
+Store an item in the cache.
 
 ```php
 public function set( string $key, mixed $value, int $lifetime = 0 ) : void;
@@ -72,10 +71,15 @@ public function set( string $key, mixed $value, int $lifetime = 0 ) : void;
 
 This function has no return value.
 
+#### Throws
+
+May throw a [CacheWriteException](Exception/CacheWriteException.md) if there was
+an error when writing to the APCu store.
+
 ## See Also
 
 * [CacheInterface](CacheInterface.md)
-* [ApcuCache](ApcuCache.md)
 * [FileCache](FileCache.md)
-* [MemcachedCache.md](MemcachedCache.md)
+* [MemcachedCache](MemcachedCache.md)
 * [SimpleCache](SimpleCache.md)
+* [VoidCache](VoidCache.md)

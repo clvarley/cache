@@ -37,7 +37,7 @@ Class MemcachedCache Implements CacheInterface
   <dd>Handle to memcached instance</dd>
 </dl>
 
-## Methods
+## Methods
 ### *__construct*
 
 Create a wrapper around the provided Memcached instance.
@@ -164,6 +164,7 @@ This function has no return value.
 ## See Also
 
 * [CacheInterface](CacheInterface.md)
+* [ApcuCache](ApcuCache.md)
 * [FileCache](FileCache.md)
 * [SimpleCache](SimpleCache.md)
 * [VoidCache](VoidCache.md)
