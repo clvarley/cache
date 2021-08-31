@@ -164,6 +164,7 @@ This function has no return value.
 ## See Also
 
 * [CacheInterface](CacheInterface.md)
+* [ApcuCache](ApcuCache.md)
 * [FileCache](FileCache.md)
 * [SimpleCache](SimpleCache.md)
 * [VoidCache](VoidCache.md)
