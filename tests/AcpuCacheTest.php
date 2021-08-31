@@ -4,8 +4,9 @@ namespace Clvarley\Cache\Tests;
 
 use Clvarley\Cache\AcpuCache;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
-use sleep;
+use function sleep;
 
 /**
  * @group Caches
