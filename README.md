@@ -26,14 +26,14 @@ A very simple collection of cache utilities.
     - [Usage](#usage-1)
     - [Documentation](#documentation-1)
   - [Memcached](#memcached)
-    - [Usage](#usage-1)
-    - [Documentation](#documentation-1)
-  - [Simple](#simple)
     - [Usage](#usage-2)
     - [Documentation](#documentation-2)
-  - [Void](#void)
+  - [Simple](#simple)
     - [Usage](#usage-3)
     - [Documentation](#documentation-3)
+  - [Void](#void)
+    - [Usage](#usage-4)
+    - [Documentation](#documentation-4)
 
 ## Requirements
 
