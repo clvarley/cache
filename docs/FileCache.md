@@ -199,6 +199,7 @@ Returns an array of hashes.
 ## See Also
 
 * [CacheInterface](CacheInterface.md)
+* [ApcuCache](ApcuCache.md)
 * [MemcachedCache](MemcachedCache.md)
 * [SimpleCache](SimpleCache.md)
 * [VoidCache](VoidCache.md)
