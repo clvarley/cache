@@ -10,6 +10,7 @@ use function sleep;
 
 /**
  * @group Caches
+ * @requires extension apcu
  */
 Class ApcuCacheTest Extends TestCase
 {
