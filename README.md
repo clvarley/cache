@@ -1,6 +1,6 @@
 # Simple Cache
 
-[![Release](https://img.shields.io/badge/release-v1.0.2-blue)](https://github.com/clvarley/cache/tags)
+[![Release](https://img.shields.io/badge/release-v1.1.0-blue)](https://github.com/clvarley/cache/tags)
 [![PHP Version](https://img.shields.io/badge/php-^7.3-blue)](https://www.php.net/supported-versions)
 [![Composer Version](https://img.shields.io/badge/composer-2-blue)](https://getcomposer.org/doc/00-intro.md)
 [![Build Status](https://travis-ci.com/clvarley/cache.svg?branch=main)](https://travis-ci.com/clvarley/cache)
