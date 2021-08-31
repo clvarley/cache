@@ -4,14 +4,17 @@ namespace Clvarley\Cache;
 
 use Clvarley\Cache\CacheInterface;
 
+use function apcu_fetch;
+use function apcu_store;
+
 /**
- * Cache that acts as a wrapper around the ACPu extension
+ * Cache that acts as a wrapper around the APCu extension
  *
  * @package Cache
  * @author clvarley
  * @since 1.1.0
  */
-Class AcpuCache Implements CacheInterface
+Class ApcuCache Implements CacheInterface
 {
 
     /**
