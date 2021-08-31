@@ -37,7 +37,7 @@ Class MemcachedCache Implements CacheInterface
   <dd>Handle to memcached instance</dd>
 </dl>
 
-## Methods
+## Methods
 ### *__construct*
 
 Create a wrapper around the provided Memcached instance.

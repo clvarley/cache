@@ -24,7 +24,7 @@ Class ApcuCache Implements CacheInterface
 }
 ```
 
-## Methods
+## Methods
 ### *get*
 
 Retrieve an item from the cache.
