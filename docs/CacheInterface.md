@@ -81,6 +81,7 @@ an error writing to the cache.
 ## See Also
 
 * [CacheItem](CacheItem.md)
+* [ApcuCache](ApcuCache.md)
 * [FileCache](FileCache.md)
 * [MemcachedCache](MemcachedCache.md)
 * [SimpleCache](SimpleCache.md)

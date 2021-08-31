@@ -1,6 +1,6 @@
 # Simple Cache
 
-[![Release](https://img.shields.io/badge/release-v1.0.2-blue)](https://github.com/clvarley/cache/tags)
+[![Release](https://img.shields.io/badge/release-v1.1.0-blue)](https://github.com/clvarley/cache/tags)
 [![PHP Version](https://img.shields.io/badge/php-^7.3-blue)](https://www.php.net/supported-versions)
 [![Composer Version](https://img.shields.io/badge/composer-2-blue)](https://getcomposer.org/doc/00-intro.md)
 [![Build Status](https://travis-ci.com/clvarley/cache.svg?branch=main)](https://travis-ci.com/clvarley/cache)
@@ -22,15 +22,18 @@ A very simple collection of cache utilities.
       - [Expired Items](#expired-items)
       - [Configuration](#configuration)
     - [Documentation](#documentation)
-  - [Memcached](#memcached)
+  - [Apcu](#apcu)
     - [Usage](#usage-1)
     - [Documentation](#documentation-1)
-  - [Simple](#simple)
+  - [Memcached](#memcached)
     - [Usage](#usage-2)
     - [Documentation](#documentation-2)
-  - [Void](#void)
+  - [Simple](#simple)
     - [Usage](#usage-3)
     - [Documentation](#documentation-3)
+  - [Void](#void)
+    - [Usage](#usage-4)
+    - [Documentation](#documentation-4)
 
 ## Requirements
 
@@ -216,6 +219,34 @@ you to write your own adapters if required.
 
 [Read more about the FileCache](docs/FileCache.md).
 
+### APCu
+
+Cache adapter that provides a wrapper around the [APCu](https://www.php.net/manual/en/book.apcu)
+functions.
+
+Requires the [APCu](https://www.php.net/manual/en/apcu.installation.php)
+PHP extension to operate.
+
+#### Usage
+
+As the APCu extension requires relatively little setup to get going, working
+with this cache adapter is fairly simple. Because of this, the constructor for
+this adapter takes no parameters and requires no configuration before calling
+the [get](docs/ApcuCache.md#get) and [set](docs/ApcuCache.md#set) methods.
+
+(You may still need to tweak values in your `php.ini` file)
+
+```php
+use Clvarley\Cache\ApcuCache;
+
+$cache = new ApcuCache();
+$cache->set( 'test', 'Stored in APCu!' );
+```
+
+#### Documentation
+
+[Read more about the ApcuCache](docs/ApcuCache.md).
+
 ### Memcached
 
 A cache adapter that makes use of the [Memcached](https://www.php.net/manual/en/book.memcached)
@@ -223,7 +254,7 @@ extension as its storage system. Allows you to store values in one (or many)
 Memcached servers, be they running locally or across a network.
 
 Requires the [Memcached](https://www.php.net/manual/en/memcached.installation.php)
-PHP extension to function.
+PHP extension to operate.
 
 #### Usage
 
