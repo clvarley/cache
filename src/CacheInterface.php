@@ -2,6 +2,9 @@
 
 namespace Clvarley\Cache;
 
+use Clvarley\Cache\Exception\CacheReadException;
+use Clvarley\Cache\Exception\CacheWriteException;
+
 /**
  * Contract for all classes that can cache values
  *
@@ -14,6 +17,7 @@ Interface CacheInterface
     /**
      * Retrieve an item from the cache
      *
+     * @throws CacheReadException
      * @param string $key Item key
      * @return mixed|null Item value (or null)
      */
@@ -26,6 +30,7 @@ Interface CacheInterface
      * should default to a value sensible for the implementation/cache method
      * being used.
      *
+     * @throws CacheWriteException
      * @param string $key   Item key
      * @param mixed $value  Item value
      * @param int $lifetime (Optional) Item lifetime
