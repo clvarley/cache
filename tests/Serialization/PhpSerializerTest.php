@@ -4,6 +4,7 @@ namespace Clvarley\Cache\Tests\Serialization;
 
 use Clvarley\Cache\Tests\Serialization\AbstractSerializerTest;
 use Clvarley\Cache\Serialization\PhpSerializer;
+use Clvarley\Cache\Exception\DeserializationException;
 use stdClass;
 use SplFixedArray;
 
@@ -153,5 +154,37 @@ Class PhpSerializerTest Extends AbstractSerializerTest
         $this->assertEquals( $item->value[0], 123 );
         $this->assertEquals( $item->value[1], "test" );
         $this->assertEqualsWithDelta( $item->expires, self::$start_time, 1 );
-     }
+    }
+
+    /**
+     * Make sure the PhpSerializer throws on invalid strings
+     */
+    public function testThrowsOnInvalidStrings()
+    {
+        $serializer = new PhpSerializer();
+
+        $this->expectError();
+
+        // Try to deserialize a invalid value
+        try {
+            $serializer->deserialize( '@@some_invalid_value' );
+        } catch ( DeserializationException $e ) {}
+
+        $this->assertInstanceOf( DeserializationException::class, $e );
+    }
+
+    /**
+     * Make sure the PhpSerializer throws on invalid classes
+     */
+    public function testThrowsOnInvalidClasses()
+    {
+        $serializer = new PhpSerializer();
+
+        // Try to deserialize a non-CacheItem class
+        try {
+            $serializer->deserialize( 'O:8:"stdClass":1:{s:2:"id";i:123;}' );
+        } catch ( DeserializationException $e ) {}
+
+        $this->assertInstanceOf( DeserializationException::class, $e );
+    }
 }
