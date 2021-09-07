@@ -91,6 +91,10 @@ Class AutoloadTest Extends TestCase
         $autoloader( \Clvarley\Cache\SerializerInterface::class );
         $autoloader( \Clvarley\Cache\Serialization\PhpSerializer::class );
 
+        // Should ignore non-cache classes
+        $autoloader( \PHPUnit\Framework\Constraint\Callback::class );
+        $autoloader( \PHPUnit\Framework\MockObject\Stub::class );
+
         // PhpUnit needs to load its classes now
         $this->tearDown();
 
