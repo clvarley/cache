@@ -10,7 +10,6 @@ use function json_encode;
 use function json_decode;
 use function is_int;
 
-use const JSON_FORCE_OBJECT;
 use const JSON_PRESERVE_ZERO_FRACTION;
 
 /**
