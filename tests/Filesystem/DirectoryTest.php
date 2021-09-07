@@ -142,8 +142,7 @@ Class DirectoryTest Extends AbstractFilesystemTest
     public function testReturnsNullOnFailure( Directory $directory )
     {
         // Try and create directory with invalid name
-        $this->expectWarning();
-        $this->assertNull( $directory->create( "#" ) );
+        $this->assertNull( @$directory->create( "#" ) );
 
         return $directory;
     }
