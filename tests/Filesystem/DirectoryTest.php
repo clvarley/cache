@@ -133,4 +133,18 @@ Class DirectoryTest Extends AbstractFilesystemTest
 
         return $directory;
     }
+
+    /**
+     * Make sure create returns null if the directory is invalid
+     *
+     * @depends testCanDeleteChildDirectory
+     */
+    public function testReturnsNullOnFailure( Directory $directory )
+    {
+        // Try and create directory with invalid name
+        $this->expectWarning();
+        $this->assertNull( $directory->create( "#" ) );
+
+        return $directory;
+    }
 }
